@@ -17,11 +17,11 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -46,6 +46,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
+uint8_t US_mess[] = "VGAnuSolutions\n";
 
 /* USER CODE END PV */
 
@@ -91,6 +93,7 @@ int main(void)
   MX_DMA_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   UB_VGA_Screen_Init(); // Init VGA-Screen
@@ -99,6 +102,10 @@ int main(void)
   UB_VGA_SetPixel(10,10,10);
   UB_VGA_SetPixel(0,0,10);
   UB_VGA_SetPixel(319,0,10);
+
+  HAL_UART_Receive_DMA (&huart2, UART2_rxBuffer, 50);
+
+  HAL_UART_Transmit(&huart2, US_mess, (uint8_t)strlen((char*)US_mess), 100);
 
   /* USER CODE END 2 */
 
@@ -122,11 +129,12 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -140,7 +148,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -156,6 +164,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, 50);
+
+    HAL_UART_Transmit(&huart2, UART2_rxBuffer, (uint8_t)strlen((char*)UART2_rxBuffer), 100);
+}
 
 /* USER CODE END 4 */
 
@@ -180,7 +195,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
