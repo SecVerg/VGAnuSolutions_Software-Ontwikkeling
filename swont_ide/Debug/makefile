@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -29,49 +30,55 @@ endif
 
 -include ../makefile.defs
 
-BUILD_ARTIFACT_NAME := swont_ide
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
+
+BUILD_ARTIFACT_NAME := VGAnuS_Software-Ontwikkeling
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-swont_ide.elf \
+VGAnuS_Software-Ontwikkeling.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-swont_ide.list \
+VGAnuS_Software-Ontwikkeling.list \
 
 OBJCOPY_BIN += \
-swont_ide.bin \
+VGAnuS_Software-Ontwikkeling.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: swont_ide.elf secondary-outputs
+main-build: VGAnuS_Software-Ontwikkeling.elf secondary-outputs
 
 # Tool invocations
-swont_ide.elf: $(OBJS) $(USER_OBJS) C:\Users\secve\Documents\GitHub\Software-Ontwikkeling\swont_ide\STM32F407VGTX_FLASH.ld
-	arm-none-eabi-gcc -o "swont_ide.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\secve\Documents\GitHub\Software-Ontwikkeling\swont_ide\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="swont_ide.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+VGAnuS_Software-Ontwikkeling.elf: $(OBJS) $(USER_OBJS) C:\Users\secve\Documents\GitHub\Software-Ontwikkeling\VGAnuS_Software-Ontwikkeling\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "VGAnuS_Software-Ontwikkeling.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\secve\Documents\GitHub\Software-Ontwikkeling\VGAnuS_Software-Ontwikkeling\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="VGAnuS_Software-Ontwikkeling.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-swont_ide.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "swont_ide.list"
+VGAnuS_Software-Ontwikkeling.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "VGAnuS_Software-Ontwikkeling.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-swont_ide.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "swont_ide.bin"
+VGAnuS_Software-Ontwikkeling.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "VGAnuS_Software-Ontwikkeling.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 

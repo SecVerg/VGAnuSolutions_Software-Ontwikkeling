@@ -58,12 +58,13 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_tim1_up;
 extern TIM_HandleTypeDef htim2;
+extern DMA_HandleTypeDef hdma_usart2_rx;
 /* USER CODE BEGIN EV */
 extern TIM_HandleTypeDef htim1;
 /* USER CODE END EV */
 
 /******************************************************************************/
-/*           Cortex-M4 Processor Interruption and Exception Handlers          */ 
+/*           Cortex-M4 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
   * @brief This function handles Non maskable interrupt.
@@ -199,6 +200,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles DMA1 stream5 global interrupt.
+  */
+void DMA1_Stream5_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart2_rx);
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -249,15 +264,15 @@ void DMA2_Stream5_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA2_Stream5_IRQn 0 */
 
-  // if (__HAL_DMA_GET_IT_SOURCE(&hdma_tim1_up, DMA_IT_TC)) // not needed?
-  // {
+  if (__HAL_DMA_GET_IT_SOURCE(&hdma_tim1_up, DMA_IT_TC)) // not needed?
+  {
     // Timer1 stop
     __HAL_TIM_DISABLE(&htim1);
     // DMA2 disable
-    // __HAL_DMA_DISABLE(&hdma_tim1_up); // not needed?
+     __HAL_DMA_DISABLE(&hdma_tim1_up); // not needed?
     // switch on black
     GPIOE->BSRR = VGA_GPIO_HINIBBLE << 16u;
-  // }
+  }
 
   /* USER CODE END DMA2_Stream5_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_tim1_up);

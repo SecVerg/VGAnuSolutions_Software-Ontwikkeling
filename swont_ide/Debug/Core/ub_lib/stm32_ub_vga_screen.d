@@ -27,7 +27,7 @@ Core/ub_lib/stm32_ub_vga_screen.o: ../Core/ub_lib/stm32_ub_vga_screen.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- C:/Users/secve/Documents/GitHub/Software-Ontwikkeling/swont_ide/Core/ub_lib/stm32_ub_vga_screen.h
+ C:/Users/secve/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/ub_lib/stm32_ub_vga_screen.h
 
 ../Core/ub_lib/stm32_ub_vga_screen.h:
 
@@ -87,4 +87,4 @@ Core/ub_lib/stm32_ub_vga_screen.o: ../Core/ub_lib/stm32_ub_vga_screen.c \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
-C:/Users/secve/Documents/GitHub/Software-Ontwikkeling/swont_ide/Core/ub_lib/stm32_ub_vga_screen.h:
+C:/Users/secve/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/ub_lib/stm32_ub_vga_screen.h:
