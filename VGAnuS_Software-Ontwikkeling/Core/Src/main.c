@@ -49,7 +49,7 @@
 
 extern uint8_t UART2_rxBuffer[];
 
-uint8_t US_mess[] = "VGAnuSolutions\n";
+uint8_t US_mess[] = "VGAnuSolutions Incorporated.\n";
 
 /* USER CODE END PV */
 
