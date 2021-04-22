@@ -24,6 +24,8 @@
 extern "C" {
 #endif
 
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -35,14 +37,21 @@ extern UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN Private defines */
 
+//#define UART_DBG // Remove comment to make UART debug active
+
+#define RX_BUFSIZE 128
+#define TX_BUFSIZE 64
+
 extern DMA_HandleTypeDef hdma_usart2_rx;
-extern uint8_t UART2_rxBuffer[50];
 
 /* USER CODE END Private defines */
 
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart);
 
 /* USER CODE END Prototypes */
 

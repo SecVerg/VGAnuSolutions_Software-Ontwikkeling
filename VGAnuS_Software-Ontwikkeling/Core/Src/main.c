@@ -47,6 +47,8 @@
 
 /* USER CODE BEGIN PV */
 
+extern uint8_t UART2_rxBuffer[];
+
 uint8_t US_mess[] = "VGAnuSolutions\n";
 
 /* USER CODE END PV */
@@ -59,6 +61,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 
 /* USER CODE END 0 */
 
@@ -103,8 +106,8 @@ int main(void)
   UB_VGA_SetPixel(0,0,10);
   UB_VGA_SetPixel(319,0,10);
 
-  HAL_UART_Receive_DMA (&huart2, UART2_rxBuffer, 50);
-
+  __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+  HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, RX_BUFSIZE);
   HAL_UART_Transmit(&huart2, US_mess, (uint8_t)strlen((char*)US_mess), 100);
 
   /* USER CODE END 2 */
@@ -164,13 +167,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, 50);
-
-    HAL_UART_Transmit(&huart2, UART2_rxBuffer, (uint8_t)strlen((char*)UART2_rxBuffer), 100);
-}
 
 /* USER CODE END 4 */
 
