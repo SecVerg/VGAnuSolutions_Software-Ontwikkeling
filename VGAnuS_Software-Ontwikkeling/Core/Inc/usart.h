@@ -24,8 +24,6 @@
 extern "C" {
 #endif
 
-
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -39,8 +37,8 @@ extern UART_HandleTypeDef huart2;
 
 //#define UART_DBG // Remove comment to make UART debug active
 
-#define RX_BUFSIZE 128
-#define TX_BUFSIZE 64
+#define RX_BUFSIZE 256
+#define TX_BUFSIZE 256
 
 extern DMA_HandleTypeDef hdma_usart2_rx;
 

@@ -47,7 +47,7 @@
 
 /* USER CODE BEGIN PV */
 
-extern uint8_t UART2_rxBuffer[];
+uint8_t UART2_rxBuffer[RX_BUFSIZE];
 
 uint8_t US_mess[] = "VGAnuSolutions\n";
 
@@ -88,6 +88,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+
+  //ITM_Port32(31) = 1;
 
   /* USER CODE END SysInit */
 
@@ -167,6 +169,17 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+int _write(int file, char *ptr, int len)
+{
+	int DataIdx;
+
+	for(DataIdx = 0; DataIdx < len; DataIdx++)
+	{
+		ITM_SendChar(*ptr++);
+	}
+	return len;
+}
 
 /* USER CODE END 4 */
 

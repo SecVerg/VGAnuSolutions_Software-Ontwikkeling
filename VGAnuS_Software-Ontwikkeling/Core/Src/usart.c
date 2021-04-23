@@ -27,7 +27,7 @@ uint8_t RxCounter = 0;
 uint8_t RxBfrPos = 0;
 uint8_t TxCounter = 0;
 char UART2_txBuffer[TX_BUFSIZE];
-uint8_t UART2_rxBuffer[RX_BUFSIZE];
+extern uint8_t UART2_rxBuffer[];
 
 /* USER CODE END 0 */
 
@@ -154,6 +154,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
     /* USART2 DMA DeInit */
     HAL_DMA_DeInit(uartHandle->hdmarx);
+    HAL_DMA_DeInit(uartHandle->hdmatx);
 
     /* USART2 interrupt Deinit */
     HAL_NVIC_DisableIRQ(USART2_IRQn);
