@@ -41,6 +41,33 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
+typedef struct
+{
+	uint16_t X_pos;
+
+	uint8_t  Y_pos;
+
+	uint16_t X_sec_pos;
+
+	uint8_t  Y_sec_pos;
+
+	uint16_t Width;
+
+	uint8_t  Height;
+
+	uint8_t  Filled;
+
+	uint16_t Color;
+
+	char*	 Text;
+
+	char*	 Font;
+
+	char*  	 Fontstyle;
+
+	uint8_t  Fontsize;
+} VGA_Command;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
