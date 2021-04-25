@@ -7,14 +7,14 @@
 
 
 
-// Functie die nog niet ondersteund worden of niet herkend worden geven error 100
-// Functie die het commando gebruikt om de juiste I/O layer functies aan te sturen
+// Functions not yet supported return error 100
+// This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command()
 {
 	switch(type)​
     {​
 	       case lijn:​
-	       	   API_draw_line(x, y, x2, y2, kleur, dikte); //roept I/O layer aan​
+	       	   API_draw_line(x, y, x2, y2, kleur, dikte); ​
 	       break;
 
 	       case rechthoek:
