@@ -27,7 +27,7 @@ void FL_Parse(char *buf)
 	if(strcmp(tokens[0], "lijn") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"lijn command", 12);
-		cmd->CMD_Type = LINE;
+
 	}
 	else if(strcmp(woorden[0], "rechthoek") == 0)
 	{

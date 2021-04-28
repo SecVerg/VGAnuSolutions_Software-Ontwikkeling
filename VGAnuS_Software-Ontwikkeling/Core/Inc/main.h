@@ -45,6 +45,8 @@ extern "C" {
 
 typedef struct
 {
+	uint8_t  CMD_Type;
+
 	uint16_t X_pos;
 
 	uint8_t  Y_pos;
@@ -110,6 +112,16 @@ void Error_Handler(void);
 #define VGA_HSYNC_GPIO_Port GPIOB
 #define VGA_VSYNC_Pin GPIO_PIN_12
 #define VGA_VSYNC_GPIO_Port GPIOB
+
+#define LINE 0x1
+#define RECT 0x2
+#define TEXT 0x3
+#define BITM 0x4
+#define CLRS 0x5
+#define WAIT 0x6
+#define CIRC 0x7
+#define FIGU 0x8
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
