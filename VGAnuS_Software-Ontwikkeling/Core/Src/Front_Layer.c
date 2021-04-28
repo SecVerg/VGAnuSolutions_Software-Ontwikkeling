@@ -12,6 +12,7 @@ void FL_Parse(char *buf)
 	char *woord;
 	char woorden[10][10];
 	int i = 0;
+	VGA_Command cmd;
 
 	woord = strtok(buf, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
 	sprintf(woorden[i], woord);
@@ -26,6 +27,8 @@ void FL_Parse(char *buf)
 	if(strcmp(woorden[0], "lijn") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"lijn command", 12);
+
+		cmd->CMD_Type = LINE;
 	}
 	else if(strcmp(woorden[0], "rechthoek") == 0)
 	{
