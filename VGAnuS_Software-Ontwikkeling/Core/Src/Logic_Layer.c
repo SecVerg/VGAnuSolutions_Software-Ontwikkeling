@@ -11,10 +11,10 @@
 // This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command()
 {
-	switch(type)​
+	switch(VGA_Command.type)​
     {​
 	       case lijn:​
-	       	   API_draw_line(x, y, x2, y2, kleur, dikte); ​
+	       	   API_draw_line(VGA_Command.x, VGA_Command.y, VGA_Command.x2, VGA_Command.y2, VGA_Command.kleur, VGA_Command.dikte); ​
 	       break;
 
 	       case rechthoek:
@@ -33,6 +33,7 @@ int LL_exec_command()
 	    	   API_clearscherm(kleur);
 	       break;
 
+	       // Bonus command types :
 	       case wacht:
 	    	   return 100;
 	       break;
