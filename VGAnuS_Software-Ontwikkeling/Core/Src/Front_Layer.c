@@ -4,14 +4,11 @@
  *  Created on: 22 Apr 2021
  *      Author: secve
  */
-<<<<<<< Updated upstream
-=======
+//Hello
 #include "main.h"
->>>>>>> Stashed changes
 
 
-<<<<<<< Updated upstream
-=======
+void FL_Parse(){
 	char splitUp[100] = UART2_txBuffer;  //Array in which the sentence is placed
 
 	char *woord = strtok(splitUp, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
@@ -21,4 +18,4 @@
 		printf("%s\n", woord);			 //print each word
 	}
 }
->>>>>>> Stashed changes
+
