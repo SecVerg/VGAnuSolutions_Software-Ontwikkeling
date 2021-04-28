@@ -36,6 +36,8 @@ extern "C" {
 #include "stm32_ub_vga_screen.h"
 #include "stdio.h"
 #include "string.h"
+#include "usart.h"
+#include "Front_Layer.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

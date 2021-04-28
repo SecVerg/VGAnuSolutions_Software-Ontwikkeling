@@ -183,6 +183,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		uint16_t start = RxBfrPos;														// Rx bytes start position (=last buffer position)
 		RxBfrPos = RX_BUFSIZE - (uint16_t)huart->hdmarx->Instance->NDTR;				// determine actual buffer position
 		uint16_t len = RX_BUFSIZE;														// init len with max. size
+		UART2_txBuffer[0] = '\0';
 
 		if(RxRollover < 2)  {
 			if(RxRollover) {															// rolled over once
@@ -201,7 +202,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 				sprintf(UART2_txBuffer, "ACK RxC:%d S:%d L:%d RO:%d RXp:%d >>", RxCounter, start, len, RxRollover, RxBfrPos);
 
 			#else
-				sprintf(UART2_txBuffer, "U heeft ingevoerd:");
+				//sprintf(UART2_txBuffer, "U heeft ingevoerd:");
 			#endif
 			TxSize = strlen(UART2_txBuffer);
 
@@ -215,7 +216,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			TxSize = strlen(UART2_txBuffer);
 		}
 
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t*)UART2_txBuffer, TxSize);						// send a response
+		FL_Parse(UART2_txBuffer);
+
+		//HAL_UART_Transmit_DMA(&huart2, (uint8_t*)UART2_txBuffer, TxSize);						// send a response
 
 		RxRollover = 0;																	// reset the Rollover variable
 	} else {
