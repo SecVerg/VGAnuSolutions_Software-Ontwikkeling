@@ -10,8 +10,7 @@
 void FL_Parse(char *buf)
 {
 	char *token;
-	char tokens[TOK_AMT][TOK_LEN];
-	char *delim = ",";
+	char tokens[10][10];
 	int i = 0;
 	VGA_Command CMD;
 
@@ -52,20 +51,20 @@ void FL_Parse(char *buf)
 	}
 
 	else if(strcmp(tokens[0], "wacht") == 0)										//BONUS COMMAND
-		{
-			HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"wacht command", 13);
-			CMD.CMD_Type = WAIT;
-		}
+	{
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"wacht command", 13);
+		CMD.CMD_Type = WAIT;
+	}
 	else if(strcmp(tokens[0], "cirkel") == 0)										//BONUS COMMAND
-			{
-				HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"cirkel command", 14);
-				CMD.CMD_Type = CIRC;
-			}
+	{
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"cirkel command", 14);
+		CMD.CMD_Type = CIRC;
+	}
 	else if(strcmp(tokens[0], "figuur") == 0)										//BONUS COMMAND
-			{
-				HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"figuur command", 14);
-				CMD.CMD_Type = FIGU;
-			}
+	{
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"figuur command", 14);
+		CMD.CMD_Type = FIGU;
+	}
 	else
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt", 11);
