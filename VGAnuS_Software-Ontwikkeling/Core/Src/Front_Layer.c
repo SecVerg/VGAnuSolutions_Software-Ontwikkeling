@@ -9,22 +9,22 @@
 
 void FL_Parse(char *buf)
 {
-	char *woord;
-	char woorden[10][10];
+	char *token;
+	char tokens[10][10];
 	int i = 0;
 	VGA_Command cmd;
 
 	woord = strtok(buf, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
-	sprintf(woorden[i], woord);
+	sprintf(tokens[i], token);
 
 	while(woord != NULL){					 //Find all the other words with the delimiter "," between them
-		sprintf(woorden[i], woord);
+		sprintf(tokens[i], token);
 		i++;
 
-		woord = strtok(NULL, ",");
+		token = strtok(NULL, ",");
 	}
 
-	if(strcmp(woorden[0], "lijn") == 0)
+	if(strcmp(tokens[0], "lijn") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"lijn command", 12);
 		cmd->CMD_Type = LINE;
