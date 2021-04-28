@@ -10,4 +10,7 @@
 
 void FL_Parse(char *buf);
 
+#define TOK_AMT 11
+#define TOK_LEN 32
+
 #endif /* INC_FRONT_LAYER_H_ */
