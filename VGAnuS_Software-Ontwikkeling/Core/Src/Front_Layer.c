@@ -10,18 +10,19 @@
 void FL_Parse(char *buf)
 {
 	char *token;
-	char tokens[10][10];
+	char tokens[TOK_AMT][TOK_LEN];
+	char delim = ",";
 	int i = 0;
-	VGA_Command cmd;
+	VGA_Command CMD;
 
-	woord = strtok(buf, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
+	token = strtok(buf, delim);	 //Find the first word in the sentence which is seperated via the delimiter ","
 	sprintf(tokens[i], token);
 
-	while(woord != NULL){					 //Find all the other words with the delimiter "," between them
+	while(token != NULL){					 //Find all the other words with the delimiter "," between them
 		sprintf(tokens[i], token);
 		i++;
 
-		token = strtok(NULL, ",");
+		token = strtok(NULL, delim);
 	}
 
 	if(strcmp(tokens[0], "lijn") == 0)
