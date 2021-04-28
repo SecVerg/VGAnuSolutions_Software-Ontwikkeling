@@ -442,18 +442,18 @@ void FL_Parse(char *buf)
  800059a:	b09e      	sub	sp, #120	; 0x78
  800059c:	af00      	add	r7, sp, #0
  800059e:	6078      	str	r0, [r7, #4]
-	char *woord;
-	char woorden[10][10];
+	char *token;
+	char tokens[10][10];
 	int i = 0;
  80005a0:	2300      	movs	r3, #0
  80005a2:	673b      	str	r3, [r7, #112]	; 0x70
 
-	woord = strtok(buf, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
+	token = strtok(buf, ",");	 //Find the first word in the sentence which is seperated via the delimiter ","
  80005a4:	493e      	ldr	r1, [pc, #248]	; (80006a0 <FL_Parse+0x108>)
  80005a6:	6878      	ldr	r0, [r7, #4]
  80005a8:	f004 fcea 	bl	8004f80 <strtok>
  80005ac:	6778      	str	r0, [r7, #116]	; 0x74
-	sprintf(woorden[i], woord);
+	sprintf(tokens[i], token);
  80005ae:	f107 010c 	add.w	r1, r7, #12
  80005b2:	6f3a      	ldr	r2, [r7, #112]	; 0x70
  80005b4:	4613      	mov	r3, r2
@@ -465,9 +465,9 @@ void FL_Parse(char *buf)
  80005c0:	4618      	mov	r0, r3
  80005c2:	f004 fcbd 	bl	8004f40 <siprintf>
 
-	while(woord != NULL){					 //Find all the other words with the delimiter "," between them
+	while(token != NULL){					 //Find all the other words with the delimiter "," between them
  80005c6:	e013      	b.n	80005f0 <FL_Parse+0x58>
-		sprintf(woorden[i], woord);
+		sprintf(tokens[i], token);
  80005c8:	f107 010c 	add.w	r1, r7, #12
  80005cc:	6f3a      	ldr	r2, [r7, #112]	; 0x70
  80005ce:	4613      	mov	r3, r2
@@ -483,18 +483,18 @@ void FL_Parse(char *buf)
  80005e2:	3301      	adds	r3, #1
  80005e4:	673b      	str	r3, [r7, #112]	; 0x70
 
-		woord = strtok(NULL, ",");
+		token = strtok(NULL, ",");
  80005e6:	492e      	ldr	r1, [pc, #184]	; (80006a0 <FL_Parse+0x108>)
  80005e8:	2000      	movs	r0, #0
  80005ea:	f004 fcc9 	bl	8004f80 <strtok>
  80005ee:	6778      	str	r0, [r7, #116]	; 0x74
-	while(woord != NULL){					 //Find all the other words with the delimiter "," between them
+	while(token != NULL){					 //Find all the other words with the delimiter "," between them
  80005f0:	6f7b      	ldr	r3, [r7, #116]	; 0x74
  80005f2:	2b00      	cmp	r3, #0
  80005f4:	d1e8      	bne.n	80005c8 <FL_Parse+0x30>
 	}
 
-	if(strcmp(woorden[0], "lijn") == 0)
+	if(strcmp(tokens[0], "lijn") == 0)
  80005f6:	f107 030c 	add.w	r3, r7, #12
  80005fa:	492a      	ldr	r1, [pc, #168]	; (80006a4 <FL_Parse+0x10c>)
  80005fc:	4618      	mov	r0, r3
@@ -515,7 +515,7 @@ void FL_Parse(char *buf)
 	}
 }
  8000612:	e040      	b.n	8000696 <FL_Parse+0xfe>
-	else if(strcmp(woorden[0], "rechthoek") == 0)
+	else if(strcmp(tokens[0], "rechthoek") == 0)
  8000614:	f107 030c 	add.w	r3, r7, #12
  8000618:	4925      	ldr	r1, [pc, #148]	; (80006b0 <FL_Parse+0x118>)
  800061a:	4618      	mov	r0, r3
@@ -530,7 +530,7 @@ void FL_Parse(char *buf)
  800062c:	f003 fd30 	bl	8004090 <HAL_UART_Transmit_DMA>
 }
  8000630:	e031      	b.n	8000696 <FL_Parse+0xfe>
-	else if(strcmp(woorden[0], "tekst") == 0)
+	else if(strcmp(tokens[0], "tekst") == 0)
  8000632:	f107 030c 	add.w	r3, r7, #12
  8000636:	4920      	ldr	r1, [pc, #128]	; (80006b8 <FL_Parse+0x120>)
  8000638:	4618      	mov	r0, r3
@@ -545,7 +545,7 @@ void FL_Parse(char *buf)
  800064a:	f003 fd21 	bl	8004090 <HAL_UART_Transmit_DMA>
 }
  800064e:	e022      	b.n	8000696 <FL_Parse+0xfe>
-	else if(strcmp(woorden[0], "bitmap") == 0)
+	else if(strcmp(tokens[0], "bitmap") == 0)
  8000650:	f107 030c 	add.w	r3, r7, #12
  8000654:	491a      	ldr	r1, [pc, #104]	; (80006c0 <FL_Parse+0x128>)
  8000656:	4618      	mov	r0, r3
@@ -560,7 +560,7 @@ void FL_Parse(char *buf)
  8000668:	f003 fd12 	bl	8004090 <HAL_UART_Transmit_DMA>
 }
  800066c:	e013      	b.n	8000696 <FL_Parse+0xfe>
-	else if(strcmp(woorden[0], "clearscherm") == 0)
+	else if(strcmp(tokens[0], "clearscherm") == 0)
  800066e:	f107 030c 	add.w	r3, r7, #12
  8000672:	4915      	ldr	r1, [pc, #84]	; (80006c8 <FL_Parse+0x130>)
  8000674:	4618      	mov	r0, r3
