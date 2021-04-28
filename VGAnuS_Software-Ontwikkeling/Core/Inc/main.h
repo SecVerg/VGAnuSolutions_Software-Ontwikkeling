@@ -45,31 +45,42 @@ extern "C" {
 
 typedef struct
 {
-	uint8_t  CMD_Type;
+	uint8_t  CMD_Type;		// A specific Type value
 
-	uint16_t X_pos;
+	uint16_t X_pos;			// The first X-axis positional value of the item
+							// to be displayed on the screen
 
-	uint8_t  Y_pos;
+	uint8_t  Y_pos;			// The first Y-axis positional value of the item
+							// to be displayed on the screen
 
-	uint16_t X_sec_pos;
+	uint16_t X_sec_pos;		// The second Y-axis positional value of the item
+							// to be displayed on the screen
 
-	uint8_t  Y_sec_pos;
+	uint8_t  Y_sec_pos;		// The second Y-axis positional value of the item
+							// to be displayed on the screen
 
-	uint16_t Width;
+	uint16_t Width;			// Width of the item to be displayed in the screen
+							// in pixels
 
-	uint8_t  Height;
+	uint8_t  Height;		// Height of the item to be displayed in the screen
+							// in pixels
 
-	uint8_t  Filled;
+	uint8_t  Filled;		// 1 or 0 to specify if rectangle is filled with
+							// color or not
 
-	uint16_t Color;
+	uint16_t Color;			// Specifies the color of the item to be
+							// displayed on the screen
 
-	char*	 Text;
+	char*	 Text;			// Text string to be displayed on the screen
 
-	char*	 Font;
+	char*	 Font;			// Font of the text to be displayed on the screen
+							// Arial or Consolas
 
-	char*  	 Fontstyle;
+	char*  	 Fontstyle;		// Fontstyle of the text to be displayed on the screen
+							// Cursive, Bold or normal
 
-	uint8_t  Fontsize;
+	uint8_t  Fontsize;		// Fontsize of the text to be displayed on the screen
+							// 1 or 2
 } VGA_Command;
 
 /* USER CODE END ET */
