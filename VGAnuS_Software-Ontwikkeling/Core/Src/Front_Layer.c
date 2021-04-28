@@ -10,12 +10,8 @@
 void FL_Parse(char *buf)
 {
 	char *token;
-<<<<<<< Updated upstream
-	char tokens[10][10];
-=======
 	char tokens[TOK_AMT][TOK_LEN];
 	char *delim = ",";
->>>>>>> Stashed changes
 	int i = 0;
 	VGA_Command CMD;
 
