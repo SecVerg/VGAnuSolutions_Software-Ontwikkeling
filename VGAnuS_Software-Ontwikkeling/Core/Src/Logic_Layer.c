@@ -4,6 +4,7 @@
  *  Created on: 23 apr. 2021
  *      Author: Maarten
  */
+#include "Front_Layer.h"
 #include "Logic_Layer.h"
 
 // Functions not yet supported return error 100

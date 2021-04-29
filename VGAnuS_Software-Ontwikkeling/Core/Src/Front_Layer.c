@@ -6,8 +6,9 @@
  */
 
 #include "Front_Layer.h"
+#include "Logic_Layer.h"
 
-VGA_Command FL_Parse(char *buf)
+int FL_Parse(char *buf)
 {
 	char *token;
 	char tokens[10][10];
@@ -104,7 +105,9 @@ VGA_Command FL_Parse(char *buf)
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt", 11);
 	}
 
-	return CMD;
+	LL_exec_command(CMD);
+
+	return 0;
 }
 
 int FL_Color_Parse(char *text)

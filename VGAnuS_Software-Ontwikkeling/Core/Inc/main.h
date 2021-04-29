@@ -39,6 +39,7 @@ extern "C" {
 #include "string.h"
 #include "API.h"
 #include "usart.h"
+#include "Front_Layer.h"
 
 /* USER CODE END Includes */
 
@@ -49,10 +50,10 @@ typedef struct VGA_Command
 {
 	uint8_t  CMD_Type;		// A specific Type value
 
-	uint16_t X_pos;			//  X_LUP, The first X-axis positional value of the item
+	uint16_t X_pos;			// X_LUP, The first X-axis positional value of the item
 							// to be displayed on the screen
 
-	uint8_t  Y_pos;		// Y_LUP, The first Y-axis positional value of the item
+	uint8_t  Y_pos;			// Y_LUP, The first Y-axis positional value of the item
 							// to be displayed on the screen
 
 	uint16_t X_sec_pos;		// X'The second Y-axis positional value of the item
