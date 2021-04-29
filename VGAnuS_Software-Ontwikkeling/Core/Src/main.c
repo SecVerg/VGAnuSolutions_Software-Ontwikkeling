@@ -104,7 +104,7 @@ int main(void)
   API_init_IO();
 
   //API_draw_line(100, 100, 100, 150, VGA_COL_RED, 10);
-  //API_draw_rectangle(100, 100, 150, 100, VGA_COL_RED, 1);
+  API_draw_rectangle(100, 100, 150, 100, VGA_COL_RED, 0);
 
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
   HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, RX_BUFSIZE);

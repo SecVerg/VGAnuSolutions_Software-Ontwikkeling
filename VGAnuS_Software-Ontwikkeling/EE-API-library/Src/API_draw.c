@@ -35,21 +35,40 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 {
 	uint8_t err = 0;
 	uint16_t xcount, ycount;
-	uint8_t thicc = 5;
 
-	for(ycount = 0; ycount < VGA_DISPLAY_Y; ycount++)
+	if(filled)
 	{
-		for(xcount = 0; xcount < VGA_DISPLAY_X; xcount++){
-			if (filled)
+		for(ycount = 0; ycount < VGA_DISPLAY_Y; ycount++)
+		{
+			for(xcount = 0; xcount < VGA_DISPLAY_X; xcount++)
 			{
-				if (ycount >= y && xcount >= x && xcount <= x + width && ycount <= y + height){
+				if (ycount >= y && xcount >= x && xcount <= x + width && ycount <= y + height)
+				{
 					UB_VGA_SetPixel(xcount, ycount, color);
 				}
 			}
-			else
-			{
+		}
+	}
+	else
+	{
+		for(xcount = x; xcount < x + width; xcount++)		// Top line
+		{
+			UB_VGA_SetPixel(xcount, y, color);
+		}
 
-			}
+		for(ycount = y; ycount < y + height; ycount++)		// Left line
+		{
+			UB_VGA_SetPixel(x, ycount, color);
+		}
+
+		for(xcount = x; xcount < x + width; xcount++)		// Bottom line
+		{
+			UB_VGA_SetPixel(xcount, ycount, color);
+		}
+
+		for(ycount = y; ycount < y + height; ycount++)		// Right line
+		{
+			UB_VGA_SetPixel(xcount, ycount, color);
 		}
 	}
 
