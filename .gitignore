@@ -1,3 +1,9 @@
 
 VGAnuS_Software-Ontwikkeling/.settings/language.settings.xml
 VGAnuS_Software-Ontwikkeling/.settings/language.settings.xml
+*.o
+*.d
+VGAnuS_Software-Ontwikkeling/.settings/language.settings.xml
+*.su
+*.mk
+*.list
