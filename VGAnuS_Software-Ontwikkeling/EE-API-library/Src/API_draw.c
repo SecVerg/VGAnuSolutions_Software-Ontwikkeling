@@ -4,10 +4,7 @@
  *  Created on: 29 Apr 2021
  *      Author: secve
  */
-
-
-
-
+#include "API.h"
 
 // Draw line function
 // f = xa + b
@@ -17,7 +14,7 @@
 
 int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
-
+	uint8_t err = 0;
 	float a;
 	float b;
 	float f;
@@ -27,8 +24,35 @@ int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color,
 
 	for(int i = x; i < x2; i++) // loop for all x coords of the line
 	{
-		f = (int)(x * a + b);					 // xa+b = y
-		UB_VGA_SetPixel(x, f, color);
+		f = (int)(i * a + b);					 // xa+b = y
+		UB_VGA_SetPixel(i, f, color);
 	}
+
+	return err;
+}
+
+int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
+{
+	uint8_t err = 0;
+	uint16_t xcount, ycount;
+	uint8_t thicc = 5;
+
+	for(ycount = 0; ycount < VGA_DISPLAY_Y; ycount++)
+	{
+		for(xcount = 0; xcount < VGA_DISPLAY_X; xcount++){
+			if (filled)
+			{
+				if (ycount >= y && xcount >= x && xcount <= x + width && ycount <= y + height){
+					UB_VGA_SetPixel(xcount, ycount, color);
+				}
+			}
+			else
+			{
+
+			}
+		}
+	}
+
+	return err;
 }
 
