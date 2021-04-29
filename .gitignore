@@ -2,3 +2,7 @@
 *.mk
 VGAnuS_Software-Ontwikkeling/Debug/makefile
 *.list
+*.d
+*.su
+*.o
+VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.elf
