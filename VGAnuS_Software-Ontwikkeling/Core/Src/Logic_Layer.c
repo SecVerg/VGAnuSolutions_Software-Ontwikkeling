@@ -10,26 +10,26 @@
 // This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command(VGA_Command CMD)
 {
-	switch(CMD.type)​
+	switch(CMD.CMD_Type)​
     {​
 		case LINE:​
-			API_draw_line(CMD.x, CMD.y, CMD.x2, CMD.y2, CMD.kleur, CMD.dikte); ​
+			API_draw_line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.thickness); ​
 			break;
 
 		case RECT:
-			API_draw_rectangle(x_lup, y_lup, breedte, hoogte, kleur, gevuld);
+			API_draw_rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
 			break;​
 
 		case TEXT:
-			API_draw_text(x, y, kleur, tekst, fontnaam, fontgrootte, fontstijl);
+			API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
 			break;
 
 		case BITM:
-			API_draw_bitmap(nr, x-lup, y-lup, smiley);
+			API_draw_bitmap(CMD.number, CMD.X_pos, CMD.Y_pos);
 			break;
 
 		case CLRS:
-			API_clearscherm(kleur);
+			API_clearscherm(CMD.Color);
 			break;
 
 		// Bonus command types :
