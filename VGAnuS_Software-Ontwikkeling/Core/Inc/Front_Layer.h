@@ -10,7 +10,7 @@
 
 #include "main.h"
 
-VGA_Command FL_Parse(char *buf);
 int FL_Color_Parse(char *text);
+VGA_Command FL_Parse(char *buf);
 
 #endif /* INC_FRONT_LAYER_H_ */

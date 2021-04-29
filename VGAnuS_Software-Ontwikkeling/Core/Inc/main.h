@@ -39,14 +39,13 @@ extern "C" {
 #include "string.h"
 #include "API.h"
 #include "usart.h"
-#include "Front_Layer.h"
-#include "Logic_Layer.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
-typedef struct
+typedef struct VGA_Command
 {
 	uint8_t  CMD_Type;		// A specific Type value
 
