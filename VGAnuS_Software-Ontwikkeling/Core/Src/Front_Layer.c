@@ -28,6 +28,7 @@ void FL_Parse(char *buf)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"lijn command", 12);
 
+		CMD.CMD_Type = LINE;
 	}
 	else if(strcmp(tokens[0], "rechthoek") == 0)
 	{
@@ -68,6 +69,5 @@ void FL_Parse(char *buf)
 	else
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt", 11);
-
 	}
 }
