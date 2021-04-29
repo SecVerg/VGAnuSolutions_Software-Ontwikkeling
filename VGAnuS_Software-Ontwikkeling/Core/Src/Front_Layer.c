@@ -5,10 +5,7 @@
  *      Author: secve
  */
 
-
 #include "main.h"
-#include "stdlib.h"
-int FL_Color_Parse();
 
 void FL_Parse(char *buf)
 {

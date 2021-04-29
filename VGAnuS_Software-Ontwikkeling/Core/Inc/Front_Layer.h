@@ -9,5 +9,6 @@
 #define INC_FRONT_LAYER_H_
 
 void FL_Parse(char *buf);
+int FL_Color_Parse(char *text);
 
 #endif /* INC_FRONT_LAYER_H_ */
