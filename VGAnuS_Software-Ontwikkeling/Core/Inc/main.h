@@ -47,16 +47,16 @@ typedef struct
 {
 	uint8_t  CMD_Type;		// A specific Type value
 
-	uint16_t X_pos;			// The first X-axis positional value of the item
+	uint16_t X_pos;			//  X_LUP, The first X-axis positional value of the item
 							// to be displayed on the screen
 
-	uint8_t  Y_pos;			// The first Y-axis positional value of the item
+	uint16_t  Y_pos;		// Y_LUP, The first Y-axis positional value of the item
 							// to be displayed on the screen
 
-	uint16_t X_sec_pos;		// The second Y-axis positional value of the item
+	uint16_t X_sec_pos;		// X'The second Y-axis positional value of the item
 							// to be displayed on the screen
 
-	uint8_t  Y_sec_pos;		// The second Y-axis positional value of the item
+	uint8_t  Y_sec_pos;		// Y' The second Y-axis positional value of the item
 							// to be displayed on the screen
 
 	uint16_t Width;			// Width of the item to be displayed in the screen
@@ -124,14 +124,14 @@ void Error_Handler(void);
 #define VGA_VSYNC_Pin GPIO_PIN_12
 #define VGA_VSYNC_GPIO_Port GPIOB
 
-#define LINE 0x1
-#define RECT 0x2
-#define TEXT 0x3
-#define BITM 0x4
-#define CLRS 0x5
-#define WAIT 0x6
-#define CIRC 0x7
-#define FIGU 0x8
+#define LINE 0x1		//lijn
+#define RECT 0x2		//Rechthoek
+#define TEXT 0x3		//text
+#define BITM 0x4		//Bitmap
+#define CLRS 0x5		//Clearscreen
+#define WAIT 0x6		//Wacht
+#define CIRC 0x7		//Cirkel
+#define FIGU 0x8		//Figuur
 
 /* USER CODE BEGIN Private defines */
 

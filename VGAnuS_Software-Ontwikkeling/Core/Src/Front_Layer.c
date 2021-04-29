@@ -34,21 +34,41 @@ void FL_Parse(char *buf)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"rechthoek command", 17);
 		CMD.CMD_Type = RECT;
+
+		CMD.X_pos = tokens[1];
+		CMD.Y_pos = tokens[2];
+		CMD.Width = tokens[3];
+		CMD.Height = tokens[4];
+		CMD.Color = tokens[5];
+		CMD.Filled = tokens[6];
+
 	}
 	else if(strcmp(tokens[0], "tekst") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"tekst command", 13);
 		CMD.CMD_Type = TEXT;
+		CMD.X_pos = tokens[1];
+		CMD.Y_pos = tokens[2];
+		CMD.Color = tokens[3];
+		CMD.Text = tokens[4];
+		CMD.Font = tokens[5];
+		CMD.Fontsize = tokens[6];
+		CMD.Fontstyle = tokens[7];
 	}
 	else if(strcmp(tokens[0], "bitmap") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"bitmap command", 14);
 		CMD.CMD_Type = BITM;
+		CMD.nr 				//////////////////////////!!!
+		CMD.X_pos = tokens[2];
+		CMD.Y_pos = tokens[3];
+
 	}
 	else if(strcmp(tokens[0], "clearscherm") == 0)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"clearscherm command", 19);
 		CMD.CMD_Type = CLRS;
+		CMD.Color = tokens[1];
 	}
 
 	else if(strcmp(tokens[0], "wacht") == 0)										//BONUS COMMAND
