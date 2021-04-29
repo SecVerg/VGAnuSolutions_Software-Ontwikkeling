@@ -1,5 +1,10 @@
+<<<<<<< HEAD:VGAnuS_Software-Ontwikkeling/Debug/Core/Src/stm32_ub_vga_screen.d
+Core/Src/stm32_ub_vga_screen.o: ../Core/Src/stm32_ub_vga_screen.c \
+ ../Core/Inc/stm32_ub_vga_screen.h ../Core/Inc/main.h \
+=======
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
+>>>>>>> FL_Parse_Command:VGAnuS_Software-Ontwikkeling/Debug/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.d
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -27,7 +32,16 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+<<<<<<< HEAD:VGAnuS_Software-Ontwikkeling/Debug/Core/Src/stm32_ub_vga_screen.d
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Core/Inc/stm32_ub_vga_screen.h
+
+../Core/Inc/stm32_ub_vga_screen.h:
+
+../Core/Inc/main.h:
+=======
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+>>>>>>> FL_Parse_Command:VGAnuS_Software-Ontwikkeling/Debug/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.d
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -84,3 +98,8 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o: \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+<<<<<<< HEAD:VGAnuS_Software-Ontwikkeling/Debug/Core/Src/stm32_ub_vga_screen.d
+
+../Core/Inc/stm32_ub_vga_screen.h:
+=======
+>>>>>>> FL_Parse_Command:VGAnuS_Software-Ontwikkeling/Debug/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.d

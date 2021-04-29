@@ -36,11 +36,56 @@ extern "C" {
 #include "stm32_ub_vga_screen.h"
 #include "stdio.h"
 #include "string.h"
-#include "API.h"
+#include "usart.h"
+#include "Front_Layer.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+
+typedef struct
+{
+	uint8_t  CMD_Type;		// A specific Type value
+
+	uint16_t X_pos;			//  X_LUP, The first X-axis positional value of the item
+							// to be displayed on the screen
+
+	uint8_t  Y_pos;		// Y_LUP, The first Y-axis positional value of the item
+							// to be displayed on the screen
+
+	uint16_t X_sec_pos;		// X'The second Y-axis positional value of the item
+							// to be displayed on the screen
+
+	uint8_t  Y_sec_pos;		// Y' The second Y-axis positional value of the item
+							// to be displayed on the screen
+
+	uint16_t Width;			// Width of the item to be displayed in the screen
+							// in pixels
+
+	uint8_t  Height;		// Height of the item to be displayed in the screen
+							// in pixels
+
+	uint8_t  Filled;		// 1 or 0 to specify if rectangle is filled with
+							// color or not
+
+	uint16_t Color;			// Specifies the color of the item to be
+							// displayed on the screen
+
+	uint8_t number;
+
+	uint8_t thickness;
+
+	char*	 Text;			// Text string to be displayed on the screen
+
+	char*	 Font;			// Font of the text to be displayed on the screen
+							// Arial or Consolas
+
+	char*  	 Fontstyle;		// Fontstyle of the text to be displayed on the screen
+							// Cursive, Bold or normal
+
+	uint8_t  Fontsize;		// Fontsize of the text to be displayed on the screen
+							// 1 or 2
+} VGA_Command;
 
 /* USER CODE END ET */
 
@@ -82,6 +127,16 @@ void Error_Handler(void);
 #define VGA_HSYNC_GPIO_Port GPIOB
 #define VGA_VSYNC_Pin GPIO_PIN_12
 #define VGA_VSYNC_GPIO_Port GPIOB
+
+#define LINE 0x1		//lijn
+#define RECT 0x2		//Rechthoek
+#define TEXT 0x3		//text
+#define BITM 0x4		//Bitmap
+#define CLRS 0x5		//Clearscreen
+#define WAIT 0x6		//Wacht
+#define CIRC 0x7		//Cirkel
+#define FIGU 0x8		//Figuur
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

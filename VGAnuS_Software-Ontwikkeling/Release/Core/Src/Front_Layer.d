@@ -1,5 +1,5 @@
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o: \
- ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
+Core/Src/Front_Layer.o: ../Core/Src/Front_Layer.c \
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/main.h \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/stm32f4xx_hal_conf.h \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -27,7 +27,13 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o: \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/stm32_ub_vga_screen.h \
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/main.h \
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/usart.h \
+ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/Front_Layer.h
+
+C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/main.h:
 
 C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -84,3 +90,11 @@ C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwik
 C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
+C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/stm32_ub_vga_screen.h:
+
+C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/main.h:
+
+C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/usart.h:
+
+C:/Users/Gebruiker/Documents/GitHub/Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/Core/Inc/Front_Layer.h:

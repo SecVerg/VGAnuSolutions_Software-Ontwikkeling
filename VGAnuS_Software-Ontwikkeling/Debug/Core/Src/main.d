@@ -27,12 +27,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/stm32_ub_vga_screen.h ../Core/Inc/main.h \
- C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h \
- C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_io.h \
- C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_draw.h \
- ../Core/Inc/dma.h ../Core/Inc/tim.h ../Core/Inc/usart.h \
- ../Core/Inc/gpio.h
+ ../Core/Inc/stm32_ub_vga_screen.h ../Core/Inc/main.h ../Core/Inc/usart.h \
+ ../Core/Inc/Front_Layer.h ../Core/Inc/dma.h ../Core/Inc/tim.h \
+ ../Core/Inc/usart.h ../Core/Inc/gpio.h
 
 ../Core/Inc/main.h:
 
@@ -96,11 +93,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Inc/main.h:
 
-C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h:
+../Core/Inc/usart.h:
 
-C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_io.h:
-
-C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_draw.h:
+../Core/Inc/Front_Layer.h:
 
 ../Core/Inc/dma.h:
 
