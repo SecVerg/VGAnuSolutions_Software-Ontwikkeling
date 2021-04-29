@@ -10,26 +10,26 @@
 // This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command(VGA_Command CMD)
 {
-	switch(CMD.CMD_Type)​
-    {​
-		case LINE:​
-			API_draw_line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.thickness); ​
+	switch(CMD.CMD_Type)
+	{
+		case LINE:
+			API_draw_line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.Thickness);
 			break;
 
 		case RECT:
 			API_draw_rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
-			break;​
+			break;
 
 		case TEXT:
-			API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
+			//API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
 			break;
 
 		case BITM:
-			API_draw_bitmap(CMD.number, CMD.X_pos, CMD.Y_pos);
+			//API_draw_bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
 			break;
 
 		case CLRS:
-			API_clearscherm(CMD.Color);
+			//API_clearscherm(CMD.Color);
 			break;
 
 		// Bonus command types :
@@ -45,7 +45,7 @@ int LL_exec_command(VGA_Command CMD)
 			return 100;
 			break;
 
-		case CRIC:
+		case CIRC:
 			return 100;
 			break;
 
@@ -57,5 +57,5 @@ int LL_exec_command(VGA_Command CMD)
 			return 100;
 			break;
 	}
-  return 0;​
+	return 0;
 }
