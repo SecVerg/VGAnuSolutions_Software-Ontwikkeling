@@ -8,6 +8,7 @@
 
 
 
+
 // Draw line function
 // f = xa + b
 // a = dy / dx
@@ -30,3 +31,4 @@ int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color,
 		UB_VGA_SetPixel(x, f, color);
 	}
 }
+

@@ -101,12 +101,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  UB_VGA_Screen_Init(); // Init VGA-Screen
-
-  UB_VGA_FillScreen(VGA_COL_WHITE);
-  UB_VGA_SetPixel(10,10,10);
-  UB_VGA_SetPixel(0,0,10);
-  UB_VGA_SetPixel(319,0,10);
+  API_init_IO();
 
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
   HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, RX_BUFSIZE);

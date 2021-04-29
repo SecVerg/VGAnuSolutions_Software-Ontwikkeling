@@ -8,6 +8,6 @@
 #ifndef INC_API_IO_H_
 #define INC_API_IO_H_
 
-
+void API_init_IO(void);
 
 #endif /* INC_API_IO_H_ */
