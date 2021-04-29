@@ -50,7 +50,7 @@ typedef struct
 	uint16_t X_pos;			//  X_LUP, The first X-axis positional value of the item
 							// to be displayed on the screen
 
-	uint16_t  Y_pos;		// Y_LUP, The first Y-axis positional value of the item
+	uint8_t  Y_pos;		// Y_LUP, The first Y-axis positional value of the item
 							// to be displayed on the screen
 
 	uint16_t X_sec_pos;		// X'The second Y-axis positional value of the item
@@ -70,6 +70,10 @@ typedef struct
 
 	uint16_t Color;			// Specifies the color of the item to be
 							// displayed on the screen
+
+	uint8_t number;
+
+	uint8_t thickness;
 
 	char*	 Text;			// Text string to be displayed on the screen
 
