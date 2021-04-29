@@ -148,7 +148,7 @@ int FL_Color_Parse(char *text)
 
 	else if(strcmp(text, "geel") == 0)
 	{
-			res = VGA_COL_YELLOW;
+		res = VGA_COL_YELLOW;
 	}
 
 	return res;
