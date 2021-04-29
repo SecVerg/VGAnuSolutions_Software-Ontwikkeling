@@ -61,12 +61,12 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 			UB_VGA_SetPixel(x, ycount, color);
 		}
 
-		for(xcount = x; xcount < x + width; xcount++)		// Bottom line
+		for(xcount = x; xcount <= x + width; xcount++)		// Bottom line
 		{
 			UB_VGA_SetPixel(xcount, ycount, color);
 		}
 
-		for(ycount = y; ycount < y + height; ycount++)		// Right line
+		for(ycount = y; ycount <= y + height; ycount++)		// Right line
 		{
 			UB_VGA_SetPixel(xcount, ycount, color);
 		}

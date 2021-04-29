@@ -13111,7 +13111,7 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
  8004d3e:	dbef      	blt.n	8004d20 <API_draw_rectangle+0xb8>
 		}
 
-		for(xcount = x; xcount < x + width; xcount++)		// Bottom line
+		for(xcount = x; xcount <= x + width; xcount++)		// Bottom line
  8004d40:	88fb      	ldrh	r3, [r7, #6]
  8004d42:	81fb      	strh	r3, [r7, #14]
  8004d44:	e009      	b.n	8004d5a <API_draw_rectangle+0xf2>
@@ -13122,7 +13122,7 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
  8004d4c:	89fb      	ldrh	r3, [r7, #14]
  8004d4e:	4618      	mov	r0, r3
  8004d50:	f7fb fdee 	bl	8000930 <UB_VGA_SetPixel>
-		for(xcount = x; xcount < x + width; xcount++)		// Bottom line
+		for(xcount = x; xcount <= x + width; xcount++)		// Bottom line
  8004d54:	89fb      	ldrh	r3, [r7, #14]
  8004d56:	3301      	adds	r3, #1
  8004d58:	81fb      	strh	r3, [r7, #14]
@@ -13131,10 +13131,10 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
  8004d5e:	887b      	ldrh	r3, [r7, #2]
  8004d60:	440b      	add	r3, r1
  8004d62:	429a      	cmp	r2, r3
- 8004d64:	dbef      	blt.n	8004d46 <API_draw_rectangle+0xde>
+ 8004d64:	ddef      	ble.n	8004d46 <API_draw_rectangle+0xde>
 		}
 
-		for(ycount = y; ycount < y + height; ycount++)		// Right line
+		for(ycount = y; ycount <= y + height; ycount++)		// Right line
  8004d66:	797b      	ldrb	r3, [r7, #5]
  8004d68:	81bb      	strh	r3, [r7, #12]
  8004d6a:	e009      	b.n	8004d80 <API_draw_rectangle+0x118>
@@ -13145,7 +13145,7 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
  8004d72:	89fb      	ldrh	r3, [r7, #14]
  8004d74:	4618      	mov	r0, r3
  8004d76:	f7fb fddb 	bl	8000930 <UB_VGA_SetPixel>
-		for(ycount = y; ycount < y + height; ycount++)		// Right line
+		for(ycount = y; ycount <= y + height; ycount++)		// Right line
  8004d7a:	89bb      	ldrh	r3, [r7, #12]
  8004d7c:	3301      	adds	r3, #1
  8004d7e:	81bb      	strh	r3, [r7, #12]
@@ -13154,7 +13154,7 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
  8004d84:	793b      	ldrb	r3, [r7, #4]
  8004d86:	440b      	add	r3, r1
  8004d88:	429a      	cmp	r2, r3
- 8004d8a:	dbef      	blt.n	8004d6c <API_draw_rectangle+0x104>
+ 8004d8a:	ddef      	ble.n	8004d6c <API_draw_rectangle+0x104>
 		}
 	}
 
