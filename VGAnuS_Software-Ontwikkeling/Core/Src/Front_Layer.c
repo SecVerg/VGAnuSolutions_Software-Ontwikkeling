@@ -34,7 +34,7 @@ int FL_Parse(char *buf)
 		CMD.X_sec_pos = (uint16_t)atoi(tokens[3]);
 		CMD.Y_sec_pos = (uint8_t)atoi(tokens[4]);
 
-		uint16_t color = FL_Color_Parse(tokens[5]);
+		uint8_t color = FL_Color_Parse(tokens[5]);
 		CMD.Color = color;
 		CMD.Thickness = (uint8_t)atoi(tokens[6]);
 
@@ -49,7 +49,7 @@ int FL_Parse(char *buf)
 		CMD.Width = (uint16_t)atoi(tokens[3]);
 		CMD.Height = (uint8_t)atoi(tokens[4]);
 
-		uint16_t color = FL_Color_Parse(tokens[5]);
+		uint8_t color = FL_Color_Parse(tokens[5]);
 		CMD.Color = color;
 		CMD.Filled = (uint8_t)atoi(tokens[6]);
 
@@ -60,7 +60,7 @@ int FL_Parse(char *buf)
 		CMD.CMD_Type = TEXT;
 		CMD.X_pos = (uint16_t)atoi(tokens[1]);
 		CMD.Y_pos = (uint8_t)atoi(tokens[2]);
-		uint16_t color = FL_Color_Parse(tokens[3]);
+		uint8_t color = FL_Color_Parse(tokens[3]);
 		CMD.Color = color;
 		CMD.Text = tokens[4];
 		CMD.Font = tokens[5];
@@ -80,7 +80,7 @@ int FL_Parse(char *buf)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"clearscherm command", 19);
 		CMD.CMD_Type = CLRS;
-		uint16_t color = FL_Color_Parse(tokens[1]);
+		uint8_t color = FL_Color_Parse(tokens[1]);
 		CMD.Color = color;
 		//CMD.Color = tokens[1];
 	}
