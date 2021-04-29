@@ -33,7 +33,6 @@ int FL_Parse(char *buf)
 		CMD.Y_pos = (uint8_t)atoi(tokens[2]);
 		CMD.X_sec_pos = (uint16_t)atoi(tokens[3]);
 		CMD.Y_sec_pos = (uint8_t)atoi(tokens[4]);
-
 		uint8_t color = FL_Color_Parse(tokens[5]);
 		CMD.Color = color;
 		CMD.Thickness = (uint8_t)atoi(tokens[6]);

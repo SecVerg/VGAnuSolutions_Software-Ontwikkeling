@@ -22,10 +22,21 @@ int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color,
 	a = (y2 - y) / (x2 - x);
 	b = y - x*a;
 
-	for(int i = x; i < x2; i++) // loop for all x coords of the line
+	if (a <= 1 || a >= -1)
 	{
-		f = (int)(i * a + b);					 // xa+b = y
-		UB_VGA_SetPixel(i, f, color);
+		for(int i = x; i < x2; i++) // loop for all x coords of the line
+		{
+			f = (int)(i * a + b);					 // xa+b = y
+			UB_VGA_SetPixel(i, f, color);
+		}
+	}
+	else
+	{
+		for (int i = y; i < y2; i++)
+		{
+			f = (int)(y/a + b);
+			UB_VGA_SetPixel(i, f, color);
+		}
 	}
 
 	return err;
