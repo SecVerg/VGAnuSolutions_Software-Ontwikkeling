@@ -4,8 +4,7 @@
  *  Created on: 23 apr. 2021
  *      Author: Maarten
  */
-#include "main.h"
-
+#include "Logic_Layer.h"
 
 // Functions not yet supported return error 100
 // This function uses the given command to execute the correct functions in the I/O layer

@@ -5,6 +5,8 @@
  *      Author: secve
  */
 
+#include "main.h"
+
 #ifndef INC_LOGIC_LAYER_H_
 #define INC_LOGIC_LAYER_H_
 

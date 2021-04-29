@@ -5,9 +5,9 @@
  *      Author: secve
  */
 
-#include "main.h"
+#include "Front_Layer.h"
 
-void FL_Parse(char *buf)
+VGA_Command FL_Parse(char *buf)
 {
 	char *token;
 	char tokens[10][10];
@@ -35,7 +35,7 @@ void FL_Parse(char *buf)
 
 		uint16_t color = FL_Color_Parse(tokens[5]);
 		CMD.Color = color;
-		CMD.thickness = (uint8_t)atoi(tokens[6]);
+		CMD.Thickness = (uint8_t)atoi(tokens[6]);
 
 	}
 	else if(strcmp(tokens[0], "rechthoek") == 0)
@@ -70,7 +70,7 @@ void FL_Parse(char *buf)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"bitmap command", 14);
 		CMD.CMD_Type = BITM;
-		CMD.number = (uint8_t) atoi(tokens[1]);
+		CMD.Number = (uint8_t) atoi(tokens[1]);
 		CMD.X_pos = (uint16_t) atoi(tokens[2]);
 		CMD.Y_pos = (uint8_t) atoi(tokens[3]);
 
@@ -103,6 +103,8 @@ void FL_Parse(char *buf)
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt", 11);
 	}
+
+	return CMD;
 }
 
 int FL_Color_Parse(char *text)

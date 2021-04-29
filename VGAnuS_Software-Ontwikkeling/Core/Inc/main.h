@@ -35,10 +35,12 @@ extern "C" {
 #include "stdint.h"
 #include "stm32_ub_vga_screen.h"
 #include "stdio.h"
+#include "stdlib.h"
 #include "string.h"
 #include "API.h"
 #include "usart.h"
 #include "Front_Layer.h"
+#include "Logic_Layer.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -72,9 +74,9 @@ typedef struct
 	uint16_t Color;			// Specifies the color of the item to be
 							// displayed on the screen
 
-	uint8_t number;
+	uint8_t  Number;
 
-	uint8_t thickness;
+	uint8_t  Thickness;
 
 	char*	 Text;			// Text string to be displayed on the screen
 
