@@ -1,4 +1,5 @@
-Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
+EE-API-library/Src/API_draw.o: ../EE-API-library/Src/API_draw.c \
+ C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -28,9 +29,10 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/stm32_ub_vga_screen.h ../Core/Inc/main.h \
- C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h \
  C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_io.h \
  C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_draw.h
+
+C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h:
 
 ../Core/Inc/main.h:
 
@@ -93,8 +95,6 @@ Core/Src/stm32f4xx_hal_msp.o: ../Core/Src/stm32f4xx_hal_msp.c \
 ../Core/Inc/stm32_ub_vga_screen.h:
 
 ../Core/Inc/main.h:
-
-C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API.h:
 
 C:/Users/secve/Documents/GitHub/VGAnuSolutions_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling/EE-API-library/Inc/API_io.h:
 
