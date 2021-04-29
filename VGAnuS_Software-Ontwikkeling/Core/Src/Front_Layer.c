@@ -38,6 +38,7 @@ void FL_Parse(char *buf)
 		uint16_t color = FL_Color_Parse(tokens[5]);
 		CMD.Color = color;
 		CMD.thickness = (uint8_t)atoi(tokens[6]);
+
 	}
 	else if(strcmp(tokens[0], "rechthoek") == 0)
 	{
@@ -103,7 +104,6 @@ void FL_Parse(char *buf)
 	else
 	{
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt", 11);
-
 	}
 }
 
