@@ -184,7 +184,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		uint16_t start = RxBfrPos;														// Rx bytes start position (=last buffer position)
 		RxBfrPos = RX_BUFSIZE - (uint16_t)huart->hdmarx->Instance->NDTR;				// determine actual buffer position
 		uint16_t len = RX_BUFSIZE;														// init len with max. size
-		UART2_txBuffer[0] = '\0';
+		for (int i = 0; i < TX_BUFSIZE; i++){
+			UART2_txBuffer[i] = '\0';
+		}
 
 		if(RxRollover < 2)  {
 			if(RxRollover) {															// rolled over once
@@ -192,6 +194,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 				else len = RX_BUFSIZE + 1;												// bytes overwritten error
 			} else {
 				len = RxBfrPos - start;													// no bytes overwritten
+				if(UART2_rxBuffer[len-1] == '\r'){
+					len = RxBfrPos - start - 2;
+				}
 			}
 		} else {
 			len = RX_BUFSIZE + 2;														// dual rollover error

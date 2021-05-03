@@ -5,3 +5,6 @@ VGAnuS_Software-Ontwikkeling/Debug/makefile
 *.su
 *.o
 *.elf
+*.bin
+*.map
+*.launch

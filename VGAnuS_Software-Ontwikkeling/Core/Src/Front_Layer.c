@@ -6,14 +6,21 @@
  */
 
 #include "Front_Layer.h"
-#include "Logic_Layer.h"
 
 int FL_Parse(char *buf)
 {
-	char *token;
-	VGA_Command CMD;
-	pTokenType* pTokenStart = FL_Token_Alloc(); // Get pointer to first item in 2d token array
-	pTokenType* pToken = pTokenStart;
+	char *token = '\0';
+	VGA_Command CMD = {0};
+	char tokens[TOK_AMT][TOK_LEN];
+	pTokenType* pToken = tokens;
+
+	for (int i = 0; i < TOK_AMT; i++)
+	{
+		for (int j = 0; j < TOK_LEN; j++)
+		{
+			tokens[i][j] = '\0';
+		}
+	}
 
 	token = strtok(buf, ",");	 			//Find the first word in the sentence which is seperated via the delimiter ","
 	sprintf(*pToken, token);
@@ -25,7 +32,7 @@ int FL_Parse(char *buf)
 		pToken++;
 	}
 
-	pToken = pTokenStart;
+	pToken = tokens;
 
 	if(strcmp(*pToken, "lijn") == 0)
 	{
@@ -103,7 +110,7 @@ int FL_Parse(char *buf)
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt\n", 11);
 	}
 
-	Free_Tokens(pTokenStart);
+
 	LL_exec_command(CMD);
 
 	return 0;
@@ -163,19 +170,4 @@ uint8_t FL_Color_Parse(char *text)
 	}
 
 	return res;
-}
-
-pTokenType* FL_Token_Alloc(void)
-{
-	pTokenArrayType* tokens = (pTokenArrayType*) calloc(TOK_AMT, sizeof(pTokenArrayType));
-
-	return tokens[0];
-}
-
-void Free_Tokens(pTokenType* pToken)
-{
-	for (int i = 0; i < TOK_AMT; i++, pToken++)
-	{
-		free(pToken);
-	}
 }

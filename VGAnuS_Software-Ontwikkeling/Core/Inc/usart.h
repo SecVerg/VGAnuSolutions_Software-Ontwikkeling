@@ -26,6 +26,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "Front_Layer.h"
 
 /* USER CODE BEGIN Includes */
 

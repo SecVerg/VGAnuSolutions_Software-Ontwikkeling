@@ -38,8 +38,6 @@ extern "C" {
 #include "stdlib.h"
 #include "string.h"
 #include "API.h"
-#include "usart.h"
-#include "Front_Layer.h"
 
 /* USER CODE END Includes */
 
