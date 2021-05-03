@@ -4,6 +4,7 @@
  *  Created on: 23 apr. 2021
  *      Author: Maarten
  */
+
 #include "Front_Layer.h"
 #include "Logic_Layer.h"
 
@@ -30,7 +31,7 @@ int LL_exec_command(VGA_Command CMD)
 			break;
 
 		case CLRS:
-			//API_clearscherm(CMD.Color);
+			API_Draw_Clearscreen(CMD.Color);
 			break;
 
 		// Bonus command types :

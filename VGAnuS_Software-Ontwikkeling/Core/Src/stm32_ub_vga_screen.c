@@ -64,8 +64,8 @@ void UB_VGA_FillScreen(uint8_t color)
 {
   uint16_t xp,yp;
 
-  for(yp = 0; yp < VGA_DISPLAY_Y; yp++) {
-    for(xp = 0; xp < VGA_DISPLAY_X; xp++) {
+  for(yp = 0; yp <= VGA_DISPLAY_Y; yp++) {
+    for(xp = 0; xp <= VGA_DISPLAY_X; xp++) {
       UB_VGA_SetPixel(xp, yp, color);
     }
   }

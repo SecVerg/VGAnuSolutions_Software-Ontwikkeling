@@ -4,8 +4,4 @@ VGAnuS_Software-Ontwikkeling/Debug/makefile
 *.d
 *.su
 *.o
-VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.elf
-VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.elf
-VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.map
-VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.bin
-VGAnuS_Software-Ontwikkeling/VGAnuS_Software-Ontwikkeling Debug.launch
+*.elf
