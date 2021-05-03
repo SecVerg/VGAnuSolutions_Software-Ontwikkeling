@@ -4,4 +4,4 @@ VGAnuS_Software-Ontwikkeling/Debug/makefile
 *.d
 *.su
 *.o
-VGAnuS_Software-Ontwikkeling/Debug/VGAnuS_Software-Ontwikkeling.elf
+*.elf
