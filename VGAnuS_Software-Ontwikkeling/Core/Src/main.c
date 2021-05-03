@@ -89,8 +89,6 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
-  //ITM_Port32(31) = 1;
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */

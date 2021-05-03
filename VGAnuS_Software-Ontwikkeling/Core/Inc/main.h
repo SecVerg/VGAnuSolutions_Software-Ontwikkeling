@@ -71,7 +71,7 @@ typedef struct VGA_Command
 	uint8_t  Filled;		// 1 or 0 to specify if rectangle is filled with
 							// color or not
 
-	uint16_t Color;			// Specifies the color of the item to be
+	uint8_t Color;			// Specifies the color of the item to be
 							// displayed on the screen
 
 	uint8_t  Number;
