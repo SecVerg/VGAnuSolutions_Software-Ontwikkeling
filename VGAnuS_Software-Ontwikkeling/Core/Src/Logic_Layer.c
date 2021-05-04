@@ -11,14 +11,13 @@
 // This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command(VGA_Command CMD)
 {
-	int err = 0;
 	switch(CMD.CMD_Type)
 	{
 		case LINE:
 			API_Draw_Line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.Thickness);
 			break;
 		case RECT:
-			API_draw_rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
+			API_Draw_Rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
 			break;
 
 		case TEXT:
@@ -26,7 +25,7 @@ int LL_exec_command(VGA_Command CMD)
 			break;
 
 		case BITM:
-			API_draw_bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
+			API_Draw_Bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
 			break;
 
 		case CLRS:

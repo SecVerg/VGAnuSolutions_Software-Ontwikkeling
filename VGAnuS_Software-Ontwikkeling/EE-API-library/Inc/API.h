@@ -12,10 +12,4 @@
 #include "API_io.h"
 #include "API_draw.h"
 
-
-
-
-
-
-
 #endif /* INC_API_H_ */

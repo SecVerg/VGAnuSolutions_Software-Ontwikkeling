@@ -6,6 +6,7 @@
  */
 
 #include "main.h"
+#include "API.h"
 
 #ifndef INC_LOGIC_LAYER_H_
 #define INC_LOGIC_LAYER_H_
