@@ -11,7 +11,6 @@
 // This function uses the given command to execute the correct functions in the I/O layer
 int LL_exec_command(VGA_Command CMD)
 {
-	int err = 0;
 	switch(CMD.CMD_Type)
 	{
 		case LINE:

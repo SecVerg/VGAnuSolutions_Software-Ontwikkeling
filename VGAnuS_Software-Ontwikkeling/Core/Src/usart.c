@@ -98,7 +98,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     hdma_usart2_rx.Init.MemInc = DMA_MINC_ENABLE;
     hdma_usart2_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
     hdma_usart2_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
-    hdma_usart2_rx.Init.Mode = DMA_CIRCULAR;
+    hdma_usart2_rx.Init.Mode = DMA_NORMAL;
     hdma_usart2_rx.Init.Priority = DMA_PRIORITY_LOW;
     hdma_usart2_rx.Init.FIFOMode = DMA_FIFOMODE_DISABLE;
     if (HAL_DMA_Init(&hdma_usart2_rx) != HAL_OK)
@@ -184,9 +184,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		uint16_t start = RxBfrPos;														// Rx bytes start position (=last buffer position)
 		RxBfrPos = RX_BUFSIZE - (uint16_t)huart->hdmarx->Instance->NDTR;				// determine actual buffer position
 		uint16_t len = RX_BUFSIZE;														// init len with max. size
-		for (int i = 0; i < TX_BUFSIZE; i++){
-			UART2_txBuffer[i] = '\0';
-		}
+
 
 		if(RxRollover < 2)  {
 			if(RxRollover) {															// rolled over once
@@ -194,7 +192,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 				else len = RX_BUFSIZE + 1;												// bytes overwritten error
 			} else {
 				len = RxBfrPos - start;													// no bytes overwritten
-				if(UART2_rxBuffer[len-1] == '\r'){
+				if(UART2_rxBuffer[RxBfrPos-1] == '\r'){
 					len = RxBfrPos - start - 2;
 				}
 			}
@@ -224,7 +222,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 		FL_Parse(UART2_txBuffer);
 
-		//HAL_UART_Transmit_DMA(&huart2, (uint8_t*)UART2_txBuffer, TxSize);						// send a response
+		for (int i = 0; i < TX_BUFSIZE; i++){
+			UART2_txBuffer[i] = '\000';
+		}
+		for (int i = 0; i < RX_BUFSIZE; i++){
+			UART2_rxBuffer[i] = '\000';
+		}
 
 		RxRollover = 0;																	// reset the Rollover variable
 	} else {
