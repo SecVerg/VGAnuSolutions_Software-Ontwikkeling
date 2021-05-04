@@ -12,4 +12,7 @@
 #include "API_io.h"
 #include "API_draw.h"
 
+#define sgn(x) ((x<0)?-1:((x>0)?1:0)) /* macro to return the sign of a
+                                         number */
+
 #endif /* INC_API_H_ */

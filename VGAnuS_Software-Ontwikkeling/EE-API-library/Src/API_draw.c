@@ -14,30 +14,36 @@
 
 // inverse for lines with a >1
 // f = y/a + b
-int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
+int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
 	uint8_t err = 0;
-	float a;
-	float b;
-	int f;
+	int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i;
+	float slope;
 
-	a = (y2 - y) / (x2 - x);
-	b = y - x*a;
-
-	if (a <= 1 || a >= -1)
+	dx=x2-x1;      /* the horizontal distance of the line */
+	dy=y2-y1;      /* the vertical distance of the line */
+	dxabs=abs(dx);
+	dyabs=abs(dy);
+	sdx=sgn(dx);
+	sdy=sgn(dy);
+	if (dxabs>=dyabs) /* the line is more horizontal than vertical */
 	{
-		for(int i = x; i < x2; i++) // loop for all x coords of the line
+		slope=(float)dy / (float)dx;
+		for(i=0;i!=dx;i+=sdx)
 		{
-			f = (int)(i * a + b);					 // xa+b = y
-			UB_VGA_SetPixel(i, f, color);
+		  px=i+x1;
+		  py=slope*i+y1;
+		  UB_VGA_SetPixel(px,py,color);
 		}
 	}
-	else
+	else /* the line is more vertical than horizontal */
 	{
-		for (int i = y; i < y2; i++)
+		slope=(float)dx / (float)dy;
+		for(i=0;i!=dy;i+=sdy)
 		{
-			f = (int)(i/a + b/a);
-			UB_VGA_SetPixel(i, f, color);
+		  px=slope*i+x1;
+		  py=i+y1;
+		  UB_VGA_SetPixel(px,py,color);
 		}
 	}
 
