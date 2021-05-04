@@ -10,12 +10,17 @@
 // f = xa + b
 // a = dy / dx
 // b = y - xa
+
+// inverse for lines with a >1
+// f = y/a + b
+
+
 int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
 	uint8_t err = 0;
 	float a;
 	float b;
-	float f;
+	int f;
 
 	a = (y2 - y) / (x2 - x);
 	b = y - x*a;
@@ -82,12 +87,5 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 	}
 
 	return err;
-}
-
-int API_Draw_Clearscreen(uint8_t color)
-{
-	UB_VGA_FillScreen(color);
-
-	return 0;
 }
 
