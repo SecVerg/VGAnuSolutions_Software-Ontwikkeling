@@ -7,6 +7,34 @@
 
 #include "API_draw.h"
 
+
+uint16_t numberArray[][9] = {
+// happy smiley
+{
+0b0011111000,
+0b0100000100,
+0b1000000010,
+0b1010001010,
+0b1000000010,
+0b1010001010,
+0b1001110010,
+0b0100000100,
+0b0011111000,
+},
+// sad smiley
+{
+0b0011111000,
+0b0100000100,
+0b1000000010,
+0b1010001010,
+0b1000000010,
+0b1001110010,
+0b1010001010,
+0b0100000100,
+0b0011111000,
+},
+};
+
 // Draw line function
 // f = xa + b
 // a = dy / dx
@@ -90,3 +118,21 @@ int API_Draw_Clearscreen(uint8_t color)
 
 	return 0;
 }
+
+
+
+int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
+{
+	uint8_t err = 0;
+
+	for (int y = 0; y<9;y++)
+	{
+		for (int x=0; x<10;x++)
+		{
+			if (numberArray[Number][y] == 1 << x)
+			UB_VGA_SetPixel(x + X_pos,y + Y_pos,0);
+		}
+	}
+	return err;
+}
+
