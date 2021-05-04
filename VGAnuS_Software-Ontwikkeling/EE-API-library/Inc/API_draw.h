@@ -8,8 +8,41 @@
 #ifndef INC_API_DRAW_H_
 #define INC_API_DRAW_H_
 
+#include "API.h"
+
 int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc);
 int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled);
 int API_Draw_Clearscreen(uint8_t color);
+int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos);
+
+//uint16_t numberArray[][9] = {
+//// happy smiley
+//{
+//0b0011111000,
+//0b0100000100,
+//0b1000000010,
+//0b1010001010,
+//0b1000000010,
+//0b1010001010,
+//0b1001110010,
+//0b0100000100,
+//0b0011111000,
+//},
+//// sad smiley
+//{
+//0b0011111000,
+//0b0100000100,
+//0b1000000010,
+//0b1010001010,
+//0b1000000010,
+//0b1001110010,
+//0b1010001010,
+//0b0100000100,
+//0b0011111000,
+//},
+//};
+
+
+
 
 #endif /* INC_API_DRAW_H_ */

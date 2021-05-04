@@ -4,7 +4,34 @@
  *  Created on: 29 Apr 2021
  *      Author: secve
  */
-#include "API.h"
+#include "API_draw.h"
+
+uint16_t numberArray[][9] = {
+// happy smiley
+{
+0b0011111000,
+0b0100000100,
+0b1000000010,
+0b1010001010,
+0b1000000010,
+0b1010001010,
+0b1001110010,
+0b0100000100,
+0b0011111000,
+},
+// sad smiley
+{
+0b0011111000,
+0b0100000100,
+0b1000000010,
+0b1010001010,
+0b1000000010,
+0b1001110010,
+0b1010001010,
+0b0100000100,
+0b0011111000,
+},
+};
 
 // Draw line function
 // f = xa + b
@@ -89,3 +116,14 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 	return err;
 }
 
+
+int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
+{
+	uint8_t err = 0;
+
+	//for (i=x; i<)
+
+
+
+	return err;
+}

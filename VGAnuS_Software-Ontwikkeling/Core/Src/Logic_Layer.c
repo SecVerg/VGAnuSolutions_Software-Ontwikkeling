@@ -26,7 +26,7 @@ int LL_exec_command(VGA_Command CMD)
 			break;
 
 		case BITM:
-			//API_draw_bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
+			API_draw_bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
 			break;
 
 		case CLRS:
