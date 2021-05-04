@@ -184,15 +184,23 @@ void FL_Write_Error(int err)
 	switch(err)
 	{
 		case ERR_PARSE || ERR_EXEC:
-			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, Command niet herkend.\n", err);
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, command niet herkend.\n", err);
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_COLOR:
-			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, Kleur niet herkend.\n", err);
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, kleur niet herkend.\n", err);
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_EXEC_NYI:
-			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, Command nog niet geïmplementeerd.\n", err);
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, command nog niet geïmplementeerd.\n", err);
+			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
+			break;
+		case ERR_EXEC_UNK:
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, commandfout.\n", err);
+			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
+			break;
+		case ERR_OOR:
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, x en/of y posities buiten beeld.\n", err);
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 	}
@@ -217,6 +225,9 @@ int strtopos(char* str)
     // digits left to update running total
     for (int i = 0; str[i] != '\0'; ++i)
         res = res * 10 + str[i] - '0';
+
+    if(res > 320)
+    	return ERR_OOR;
 
     // return result.
     return res;
