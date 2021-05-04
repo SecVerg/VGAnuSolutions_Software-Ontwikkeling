@@ -887,7 +887,7 @@ Discarded input sections
  .text.API_draw_rectangle
                 0x0000000000000000       0xbc EE-API-library/Src/API_draw.o
  .text.API_draw_bitmap
-                0x0000000000000000        0x4 EE-API-library/Src/API_draw.o
+                0x0000000000000000       0x50 EE-API-library/Src/API_draw.o
  .data.numberArray
                 0x0000000000000000       0x24 EE-API-library/Src/API_draw.o
  .comment       0x0000000000000000       0x54 EE-API-library/Src/API_draw.o

@@ -121,9 +121,13 @@ int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 {
 	uint8_t err = 0;
 
-	//for (i=x; i<)
-
-
-
+	for (int y = 0; y<9;y++)
+	{
+		for (int x=0; x<10;x++)
+		{
+			if (numberArray[Number][y] == 1 << x)
+			UB_VGA_SetPixel(x + X_pos,y + Y_pos,0);
+		}
+	}
 	return err;
 }
