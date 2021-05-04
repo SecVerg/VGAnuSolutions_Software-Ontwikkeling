@@ -8,3 +8,5 @@ VGAnuS_Software-Ontwikkeling/Debug/makefile
 *.bin
 *.map
 *.launch
+*.xml
+VGAnuS_Software-Ontwikkeling/Release/makefile
