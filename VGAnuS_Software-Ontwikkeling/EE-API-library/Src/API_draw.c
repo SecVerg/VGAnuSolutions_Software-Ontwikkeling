@@ -59,11 +59,8 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 			}
 			else
 			{
-				if (((((xcount >= x && xcount <= x + 1) || // left
-					(xcount >= x + width && xcount <= x + width + 1)) || //right
-					((ycount >= y && ycount <= y + 1) || // top
-					(ycount >= y + height && ycount <= y + height + 1)))) && // bottom
-					((xcount > x && xcount <= x + width) && (ycount > y && ycount <= y + height)))
+				if ((ycount >= y && xcount >= x && xcount <= x + width && ycount <= y + height) &&
+					(ycount <= y || ycount >= y + height || xcount <= x || xcount >= x + width))
 				{
 					UB_VGA_SetPixel(xcount, ycount, color);
 				}
