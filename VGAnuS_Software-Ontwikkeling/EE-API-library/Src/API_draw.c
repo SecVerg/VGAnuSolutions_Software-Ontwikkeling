@@ -37,7 +37,7 @@ int API_draw_line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color,
 	{
 		for (int i = y; i < y2; i++)
 		{
-			f = (int)(y/a + b);
+			f = (int)(i/a + b/a);
 			UB_VGA_SetPixel(i, f, color);
 		}
 	}
