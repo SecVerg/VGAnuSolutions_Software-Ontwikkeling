@@ -19,5 +19,7 @@ typedef char pTokenType[TOK_LEN];
 
 uint8_t FL_Color_Parse(char *text);
 int FL_Parse(char *buf);
+void FL_Write_Error(int err);
+int strtopos(char* str);
 
 #endif /* INC_FRONT_LAYER_H_ */

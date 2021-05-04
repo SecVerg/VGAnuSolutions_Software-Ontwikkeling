@@ -44,7 +44,7 @@ uint16_t numberArray[][9] = {
 // f = y/a + b
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
-	uint8_t err = 0;
+	int err = 0;
 	int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i;
 	float slope;
 
@@ -54,6 +54,7 @@ int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t colo
 	dyabs=abs(dy);
 	sdx=sgn(dx);
 	sdy=sgn(dy);
+
 	if (dxabs>=dyabs) /* the line is more horizontal than vertical */
 	{
 		slope=(float)dy / (float)dx;
@@ -118,7 +119,7 @@ int API_Draw_Clearscreen(uint8_t color)
 
 
 
-int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
+int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 {
 	uint8_t err = 0;
 

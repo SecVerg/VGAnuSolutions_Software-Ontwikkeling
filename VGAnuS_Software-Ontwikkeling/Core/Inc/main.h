@@ -130,6 +130,8 @@ void Error_Handler(void);
 #define VGA_VSYNC_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
+#define MAX_ERRMSG_SIZE   128
+
 #define LINE 0x1		//lijn
 #define RECT 0x2		//Rechthoek
 #define TEXT 0x3		//text
@@ -140,6 +142,13 @@ void Error_Handler(void);
 #define CIRC 0x8		//Cirkel
 #define FIGU 0x9		//Figuur
 #define EXEC 0xA		//Execute
+
+#define ERR_PARSE 			0x10
+#define ERR_COLOR 			0x11
+#define ERR_EXEC  			0x12
+#define ERR_EXEC_NYI	 	0x13
+#define ERR_EXEC_UNK	 	0x14
+#define ERR_OOR				0x20
 
 /* USER CODE END Private defines */
 

@@ -14,48 +14,40 @@ int LL_exec_command(VGA_Command CMD)
 	switch(CMD.CMD_Type)
 	{
 		case LINE:
-			API_Draw_Line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.Thickness);
-			break;
+			return API_Draw_Line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.Thickness);
+
 		case RECT:
-			API_Draw_Rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
-			break;
+			return API_Draw_Rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
 
 		case TEXT:
-			//API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
+			//return API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
 			break;
 
 		case BITM:
-			//API_draw_bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
+			return API_Draw_Bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
 			break;
 
 		case CLRS:
-			API_Draw_Clearscreen(CMD.Color);
-			break;
+			return API_Draw_Clearscreen(CMD.Color);
 
 		// Bonus command types :
 		case WAIT:
-			return 100;
-			break;
+			return ERR_EXEC_NYI;
 
 		case REPT:
-			return 100;
-			break;
+			return ERR_EXEC_NYI;
 
 		case EXEC:
-			return 100;
-			break;
+			return ERR_EXEC_NYI;
 
 		case CIRC:
-			return 100;
-			break;
+			return ERR_EXEC_NYI;
 
 		case FIGU:
-			return 100;
-			break;
+			return ERR_EXEC_NYI;
 
 		default:
-			return 100;
-			break;
+			return ERR_EXEC;
 	}
-	return 0;
+	return ERR_EXEC_UNK;
 }

@@ -14,5 +14,6 @@
 int API_Draw_Line(uint16_t x, uint8_t y, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc);
 int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled);
 int API_Draw_Clearscreen(uint8_t color);
+int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos);
 
 #endif /* INC_API_DRAW_H_ */

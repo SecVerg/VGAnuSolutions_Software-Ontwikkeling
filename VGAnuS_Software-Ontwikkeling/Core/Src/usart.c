@@ -176,6 +176,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	// and the start buffer pointer is at 0, it will be also 0 at the end of the
 	// transmission. In this case the DMA rollover will increment the RxRollover
 	// variable first and len will not be zero.
+	int err = 0;
+
 	if(__HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE)) {									// Check if it is an "Idle Interrupt"
 		__HAL_UART_CLEAR_IDLEFLAG(&huart2);												// clear the interrupt
 		RxCounter++;																	// increment the Rx Counter
@@ -220,7 +222,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			TxSize = strlen(UART2_txBuffer);
 		}
 
-		FL_Parse(UART2_txBuffer);
+		err = FL_Parse(UART2_txBuffer);
+
+		if(err){
+			FL_Write_Error(err);
+		}
 
 		for (int i = 0; i < TX_BUFSIZE; i++){
 			UART2_txBuffer[i] = '\000';

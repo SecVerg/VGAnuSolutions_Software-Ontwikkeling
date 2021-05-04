@@ -49,7 +49,7 @@
 
 uint8_t UART2_rxBuffer[RX_BUFSIZE];
 
-uint8_t US_mess[] = "VGAnuSolutions\n";
+uint8_t SU_mess[] = "VGAnuSolutions\n";
 
 /* USER CODE END PV */
 
@@ -103,7 +103,7 @@ int main(void)
 
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
   HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, RX_BUFSIZE);
-  HAL_UART_Transmit(&huart2, US_mess, (uint8_t)strlen((char*)US_mess), 10);
+  HAL_UART_Transmit(&huart2, SU_mess, (uint8_t)strlen((char*)SU_mess), 10);
 
   /* USER CODE END 2 */
 
