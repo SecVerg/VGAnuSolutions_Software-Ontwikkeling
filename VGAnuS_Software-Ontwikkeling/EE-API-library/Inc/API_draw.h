@@ -15,34 +15,4 @@ int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 int API_Draw_Clearscreen(uint8_t color);
 int API_draw_bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos);
 
-//uint16_t numberArray[][9] = {
-//// happy smiley
-//{
-//0b0011111000,
-//0b0100000100,
-//0b1000000010,
-//0b1010001010,
-//0b1000000010,
-//0b1010001010,
-//0b1001110010,
-//0b0100000100,
-//0b0011111000,
-//},
-//// sad smiley
-//{
-//0b0011111000,
-//0b0100000100,
-//0b1000000010,
-//0b1010001010,
-//0b1000000010,
-//0b1001110010,
-//0b1010001010,
-//0b0100000100,
-//0b0011111000,
-//},
-//};
-
-
-
-
 #endif /* INC_API_DRAW_H_ */
