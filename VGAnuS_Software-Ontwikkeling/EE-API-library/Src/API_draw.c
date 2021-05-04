@@ -78,7 +78,7 @@ int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t colo
 	return err;
 }
 
-int API_draw_rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
+int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
 {
 	uint8_t err = 0;
 	uint16_t xcount, ycount;

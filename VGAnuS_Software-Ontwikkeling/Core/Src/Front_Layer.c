@@ -37,7 +37,7 @@ int FL_Parse(char *buf)
 	if(strcmp(*pToken, "lijn") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"lijn command\r\n", 12);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"lijn command\n", 12, 10);
 		CMD.CMD_Type = LINE;
 		CMD.X_pos = (uint16_t)atoi(*pToken++);
 		CMD.Y_pos = (uint8_t)atoi(*pToken++);
@@ -49,7 +49,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "rechthoek") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"rechthoek command\r\n", 17);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"rechthoek command\n", 17, 10);
 		CMD.CMD_Type = RECT;
 		CMD.X_pos = (uint16_t)atoi(*pToken++);
 		CMD.Y_pos = (uint8_t)atoi(*pToken++);
@@ -61,7 +61,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "tekst") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"tekst command\r\n", 13);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"tekst command\n", 13, 10);
 		CMD.CMD_Type = TEXT;
 		CMD.X_pos = (uint16_t)atoi(*pToken++);
 		CMD.Y_pos = (uint8_t)atoi(*pToken++);
@@ -74,7 +74,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "bitmap") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"bitmap command\r\n", 14);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"bitmap command\n", 14, 10);
 		CMD.CMD_Type = BITM;
 		CMD.Number = (uint8_t) atoi(*pToken++);
 		CMD.X_pos = (uint8_t) atoi(*pToken++);
@@ -83,28 +83,28 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "clearscherm") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"clearscherm command\r\n", 19);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"clearscherm command\n", 19, 10);
 		CMD.CMD_Type = CLRS;
 		CMD.Color = FL_Color_Parse(*pToken);
 	}
 	else if(strcmp(*pToken, "wacht") == 0)										//BONUS COMMAND
 	{
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"wacht command\r\n", 13);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"wacht command\n", 13, 10);
 		CMD.CMD_Type = WAIT;
 	}
 	else if(strcmp(*pToken, "cirkel") == 0)										//BONUS COMMAND
 	{
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"cirkel command\r\n", 14);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"cirkel command\n", 14, 10);
 		CMD.CMD_Type = CIRC;
 	}
 	else if(strcmp(*pToken, "figuur") == 0)										//BONUS COMMAND
 	{
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"figuur command\r\n", 14);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"figuur command\n", 14, 10);
 		CMD.CMD_Type = FIGU;
 	}
 	else
 	{
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt\r\n", 11);
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t *)"Command nvt\n", 11);
 	}
 
 	LL_exec_command(CMD);

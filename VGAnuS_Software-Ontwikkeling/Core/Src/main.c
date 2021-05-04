@@ -101,12 +101,9 @@ int main(void)
 
   API_init_IO();
 
-  //API_draw_line(100, 100, 100, 150, VGA_COL_RED, 10);
-  //API_draw_rectangle(100, 100, 150, 100, VGA_COL_RED, 0);
-
   __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
   HAL_UART_Receive_DMA(&huart2, UART2_rxBuffer, RX_BUFSIZE);
-  HAL_UART_Transmit(&huart2, US_mess, (uint8_t)strlen((char*)US_mess), 100);
+  HAL_UART_Transmit(&huart2, US_mess, (uint8_t)strlen((char*)US_mess), 10);
 
   /* USER CODE END 2 */
 

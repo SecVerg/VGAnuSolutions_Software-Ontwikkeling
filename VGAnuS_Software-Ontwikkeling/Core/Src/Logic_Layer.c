@@ -17,7 +17,7 @@ int LL_exec_command(VGA_Command CMD)
 			API_Draw_Line(CMD.X_pos, CMD.Y_pos, CMD.X_sec_pos, CMD.Y_sec_pos, CMD.Color, CMD.Thickness);
 			break;
 		case RECT:
-			API_draw_rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
+			API_Draw_Rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
 			break;
 
 		case TEXT:
