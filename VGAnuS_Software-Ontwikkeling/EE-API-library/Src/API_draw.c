@@ -272,10 +272,14 @@ static const uint16_t Font_Array[2][100][10] = { {
 },
 };
 
+//-----------------------------------------------------------
 // Draw line function
-// f = xa + b
-// a = dy / dx
-// b = y - xa
+// Arguments:
+// x1,y1,x2,x2 : coords of beginning and end of line
+// color : color of the line
+// thicc : thicness of the line
+//
+// ----------------------------------------------------------
 
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
