@@ -223,8 +223,6 @@ void FL_Write_Error(int err)
 	}
 }
 
-
-
 int strtopos(char* str)
 {
     // Initialize result

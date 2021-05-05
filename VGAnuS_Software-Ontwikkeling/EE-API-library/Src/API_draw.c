@@ -6,6 +6,7 @@
  */
 #include "API_draw.h"
 
+// Bitmap array
 uint64_t numberArray[][BIT_AMT] = {
 {
 0b00001111100000111110000000000000,
@@ -173,7 +174,8 @@ uint64_t numberArray[][BIT_AMT] = {
 },
 };
 
-static const uint16_t Font_Array[2][100][10] = { {
+// Bitmap array for Arial font
+static const uint16_t Font_Array[100][10] =  {
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}, // Ascii = [ ]
 {0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x00,0x00}, // Ascii = [!]
 {0x28,0x28,0x28,0x00,0x00,0x00,0x00,0x00,0x00,0x00}, // Ascii = ["]
@@ -269,7 +271,6 @@ static const uint16_t Font_Array[2][100][10] = { {
 {0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10}, // Ascii = [|]
 {0x30,0x10,0x10,0x10,0x08,0x08,0x10,0x10,0x10,0x30}, // Ascii = [}]
 {0x00,0x00,0x00,0x74,0x4C,0x00,0x00,0x00,0x00,0x00}, // Ascii = [~]
-},
 };
 
 //-----------------------------------------------------------
@@ -280,7 +281,6 @@ static const uint16_t Font_Array[2][100][10] = { {
 // thicc : thicness of the line
 //
 // ----------------------------------------------------------
-
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
 int err = 0;
@@ -316,6 +316,16 @@ float slope;
 	return err;
 }
 
+//-----------------------------------------------------------
+// Draw rectangle function
+// Arguments:
+// x1,y1 : coords of top left corner of rectangle
+// width : width of the rectangle in pixels
+// height: height of the rectangle in pixels
+// color : color of the rectangle
+// filled: if the rectangle is filled with color or just the outlines
+// 1 is filled, 0 is just outlines
+// ----------------------------------------------------------
 int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
 {
 	uint8_t err = 0;
@@ -347,6 +357,11 @@ int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 	return err;
 }
 
+//-----------------------------------------------------------
+// Draw clearscreen function
+// Arguments:
+// color : color of the screen to be filled with
+// ----------------------------------------------------------
 int API_Draw_Clearscreen(uint8_t color)
 {
 	UB_VGA_FillScreen(color);
@@ -382,6 +397,16 @@ int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 	return err;
 }
 
+//-----------------------------------------------------------
+// Draw text function
+// Arguments:
+// x1,y1 : coords of top left corner of text
+// color : color of the text
+// text  : the text to be displayed on the screen
+// font  : font of the text to be displayed in
+// fontsize: size of the letters (1 - 2)
+// fontstyle: cursif, bold, normal
+// ----------------------------------------------------------
 int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, uint8_t fontsize, char* fontstyle)
 {
 	uint8_t font_type;
@@ -406,15 +431,19 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 	return 0;
 }
 
+//-----------------------------------------------------------
+// Draw circle function
+// Arguments:
+// x1,y1 : coords of middle of circle
+// r  	 : radius of circle
+// color : color of the circle
+// ----------------------------------------------------------
 int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
 {
     // Consider a rectangle of size N*N
     int N = 2*r+1;
-
-    int x2 = x;
-    int y2 = y;
     int ax, ay;  // Coordinates inside the rectangle
-    int a;
+
     // Draw a square of size N*N.
     for (int i = 0; i < N; i++)
     {
@@ -428,20 +457,29 @@ int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
             {
             	UB_VGA_SetPixel((ax+x),(ay+y), color);
             }
-//            else // If outside the circle, print space
-
         }
     }
     return 0;
 }
 
+//-----------------------------------------------------------
+// Draw char function
+// Arguments:
+// x1,y1 : coords of top left corner of char
+// color : color of the char
+// font  : font of the letter to be displayed in
+// ----------------------------------------------------------
 int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t font)
 {
+	// get character index for bitmap array
 	uint16_t index = (uint16_t)character - 32;
 
+	// go through all bytes
 	for(int i = 0; i < 10; i++){
+		// go through bits in byte
 		for (int j = 0; j < 8; j++){
-			if (Font_Array[0][index][i] & (0b10000000 >> j))
+			// if bit is 1 display on screen
+			if (Font_Array[index][i] & (0b10000000 >> j))
 			{
 				UB_VGA_SetPixel(j + x, i + y, color);
 			}
