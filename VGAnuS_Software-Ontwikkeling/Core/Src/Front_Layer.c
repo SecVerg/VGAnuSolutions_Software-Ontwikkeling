@@ -98,8 +98,8 @@ int FL_Parse(char *buf)
 		CMD.CMD_Type = CIRC;
 		CMD.X_pos = (uint16_t)strtopos(*pToken++);
 		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
-		CMD.Color = FL_Color_Parse(*pToken++);
 		CMD.Radius = (uint8_t)atoi(*pToken++);
+		CMD.Color = FL_Color_Parse(*pToken++);
 	}
 	else if(strcmp(*pToken, "figuur") == 0)										//BONUS COMMAND "FIGUUR"
 	{
@@ -200,7 +200,7 @@ void FL_Write_Error(int err)
 
 	switch(err)
 	{
-		case ERR_PARSE || ERR_EXEC:
+		case ERR_PARSE:
 			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, command niet herkend.\n", err);
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
@@ -224,7 +224,7 @@ void FL_Write_Error(int err)
 }
 
 
-// A simple atoi() function
+
 int strtopos(char* str)
 {
     // Initialize result
