@@ -18,37 +18,38 @@ LV_FONT_DECLARE(Consolas);
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
 	int err = 0;
-	int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i;
+	int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i,k;		//
 	float slope;
 
 	dx=x2-x1;      /* the horizontal distance of the line */
 	dy=y2-y1;      /* the vertical distance of the line */
-	dxabs=abs(dx);
+	dxabs=abs(dx); //Negative values converterd to positive values
 	dyabs=abs(dy);
-	sdx=sgn(dx);
-	sdy=sgn(dy);
+	sdx=sgn(dx); //returns 1 if positive, 0 if 0 and -1 if less than 0
+	sdy=sgn(dy); //returns 1 if positive, 0 if 0 and -1 if less than 0
 
 	if (dxabs>=dyabs) /* the line is more horizontal than vertical */
 	{
-		slope=(float)dy / (float)dx;
+		slope=(float)dy / (float)dx; //determine slope(a)
 		for(i=0;i!=dx;i+=sdx)
 		{
 		  px=i+x1;
 		  py=slope*i+y1;
-		  UB_VGA_SetPixel(px,py,color);
+		  for(k=0;k<thicc;k++)
+		  UB_VGA_SetPixel(px,py+k,color);
 		}
 	}
 	else /* the line is more vertical than horizontal */
 	{
-		slope=(float)dx / (float)dy;
+		slope=(float)dx / (float)dy; //determine slope(a)
 		for(i=0;i!=dy;i+=sdy)
 		{
 		  px=slope*i+x1;
 		  py=i+y1;
-		  UB_VGA_SetPixel(px,py,color);
+		  for(k=0;k<thicc;k++)
+		  UB_VGA_SetPixel(px+k,py,color);
 		}
 	}
-
 	return err;
 }
 
