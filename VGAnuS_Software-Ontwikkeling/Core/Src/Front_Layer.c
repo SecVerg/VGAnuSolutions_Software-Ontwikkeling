@@ -157,6 +157,10 @@ uint8_t FL_Color_Parse(char *text)
 	{
 		res = VGA_COL_CYAN;
 	}
+	else if(strcmp(text, "lichtcyaan") == 0)
+	{
+		res = VGA_COL_LIGHTCYAN;
+	}
 	else if(strcmp(text, "magenta") == 0)
 	{
 		res = VGA_COL_MAGENTA;
