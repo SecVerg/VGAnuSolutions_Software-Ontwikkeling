@@ -88,6 +88,9 @@ typedef struct VGA_Command
 							// 1 or 2
 } VGA_Command;
 
+
+
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

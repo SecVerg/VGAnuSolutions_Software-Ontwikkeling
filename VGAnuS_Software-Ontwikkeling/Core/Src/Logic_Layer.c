@@ -20,7 +20,7 @@ int LL_exec_command(VGA_Command CMD)
 			return API_Draw_Rectangle(CMD.X_pos, CMD.Y_pos, CMD.Width, CMD.Height, CMD.Color, CMD.Filled);
 
 		case TEXT:
-			//return API_draw_text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
+			return API_Draw_Text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
 			break;
 
 		case BITM:
