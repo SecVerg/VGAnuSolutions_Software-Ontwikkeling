@@ -2,13 +2,19 @@
  * Logic_Layer.c
  *
  *  Created on: 23 apr. 2021
- *      Author: Maarten
+ *      Author: Maarten van Dijk, Christiaan Meerkerk, Stijn Vergouwen
  */
 
 #include "Logic_Layer.h"
 
-// Functions not yet supported return error 100
-// This function uses the given command to execute the correct functions in the I/O layer
+
+// -----------------------------------------------------------------------------------------
+// Command execution
+// This function uses the command to execute the correct functions in the I/O layer
+// The given command is struct VGA_Command located in main.h
+// Functions not yet supported return ERR_EXEC_NYI (Not Yet Implemented)
+// Errors from API functions are also returned
+// ----------------------------------------------------------------------------------------
 int LL_exec_command(VGA_Command CMD)
 {
 	switch(CMD.CMD_Type)
@@ -21,11 +27,9 @@ int LL_exec_command(VGA_Command CMD)
 
 		case TEXT:
 			return API_Draw_Text(CMD.X_pos, CMD.Y_pos, CMD.Color, CMD.Text, CMD.Font, CMD.Fontsize, CMD.Fontstyle);
-			break;
 
 		case BITM:
 			return API_Draw_Bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
-			break;
 
 		case CLRS:
 			return API_Draw_Clearscreen(CMD.Color);

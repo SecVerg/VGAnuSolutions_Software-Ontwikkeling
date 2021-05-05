@@ -11,7 +11,9 @@
 #ifndef INC_LOGIC_LAYER_H_
 #define INC_LOGIC_LAYER_H_
 
+
+//Function prototype
 int LL_exec_command();
-int strtopos(char* str);
+
 
 #endif /* INC_LOGIC_LAYER_H_ */
