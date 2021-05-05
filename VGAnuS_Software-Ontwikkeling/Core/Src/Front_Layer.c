@@ -1,11 +1,14 @@
 /*
  * Front_Layer.c
  *
- *  Created on: 29 Apr 2021
- *      Author: secve
+ * Created on: 29 Apr 2021
+ * Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #include "Front_Layer.h"
+
+//----------------------------------------
+//Description:	Extract all the tokens from the terminal by seperating them at the delimiter.
 
 int FL_Parse(char *buf)
 {
@@ -28,7 +31,21 @@ int FL_Parse(char *buf)
 
 	// Compare first index of buffer with the command types
 	// If they are the same, fill VGA_Command struct with the arguments
-	if(strcmp(*pToken, "lijn") == 0)
+	// Command types:
+	//	X_pos: 		0 - 320. 			first X coordinate for the pixels to be printed
+	//	Y_pos:	 	0 - 240. 			First Y coordinate for the pixel to be printed
+	//	X_Sec_Pos 	0 - 320: 			Secondairy x coordinate for the pixels to be printed
+	//	Y_Sec_Pos: 	0 - 240				Secondairy Y coordinate for the pixels to be printed
+	//	Color: "See all color in FL_Color_Parse". Color in which the pixel will be displayed
+	//	Thickness:  0 - 4				Changes the thickness of for example the line that is going to be displayed
+	//	Width:	 						Command type for rectangle only; the width of the rectangle
+	//	Height:							Command type for rectangle only; the height of the rectangle
+	//	Filled:	 	0 - 1				0: Not filled, 1: filled
+	//	Font:		Arial, consolas		Choose the font in which the text will be diplayed. !!The font Consolas is not yet available)!!
+
+
+
+	if(strcmp(*pToken, "lijn") == 0)											//Fill the struct for line command
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"lijn command\n", 13, 10);
@@ -40,7 +57,7 @@ int FL_Parse(char *buf)
 		CMD.Color = FL_Color_Parse(*pToken++);
 		CMD.Thickness = (uint8_t)atoi(*pToken);
 	}
-	else if(strcmp(*pToken, "rechthoek") == 0)
+	else if(strcmp(*pToken, "rechthoek") == 0)									//Fill the struct for rectangle command
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"rechthoek command\n", 18, 10);
@@ -55,7 +72,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "tekst") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit(&huart2, (uint8_t *)"tekst command\n", 14, 10);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"tekst command\n", 14, 10);		//Fill the struct for tekst command
 		CMD.CMD_Type = TEXT;
 		CMD.X_pos = (uint16_t)strtopos(*pToken++);
 		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
@@ -68,7 +85,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "bitmap") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit(&huart2, (uint8_t *)"bitmap command\n", 15, 10);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"bitmap command\n", 15, 10);		//Fill the struct for bitmap command
 		CMD.CMD_Type = BITM;
 		CMD.Number = (uint8_t) atoi(*pToken++);
 		CMD.X_pos = (uint8_t) strtopos(*pToken++);
@@ -77,7 +94,7 @@ int FL_Parse(char *buf)
 	else if(strcmp(*pToken, "clearscherm") == 0)
 	{
 		pToken++;
-		HAL_UART_Transmit(&huart2, (uint8_t *)"clearscherm command\n", 20, 10);
+		HAL_UART_Transmit(&huart2, (uint8_t *)"clearscherm command\n", 20, 10);	//Fill the struct for clearscherm
 		CMD.CMD_Type = CLRS;
 		CMD.Color = FL_Color_Parse(*pToken++);
 	}
@@ -121,6 +138,15 @@ int FL_Parse(char *buf)
 	// Send command struct to Logic Layer for further processing
 	return LL_exec_command(CMD);
 }
+
+
+//------------------------------------------------
+//Color Parse function:
+//Arguments:	Text : pointer to the CMD command "TEXT"
+//Description: 	Compare the entered string for "color" with specific words like "zwart" or "groen".
+//				If the entered string matches a word, the variable "res" receives a specific value. This is the color
+//				that the pixels will be when they turn on.
+//------------------------------------------------
 
 uint8_t FL_Color_Parse(char *text)
 {
@@ -194,6 +220,7 @@ uint8_t FL_Color_Parse(char *text)
 	return res;
 }
 
+//Error database
 void FL_Write_Error(int err)
 {
 	char err_msg[MAX_ERRMSG_SIZE];
@@ -224,7 +251,6 @@ void FL_Write_Error(int err)
 }
 
 
-
 int strtopos(char* str)
 {
     // Initialize result
@@ -244,8 +270,6 @@ int strtopos(char* str)
         res = res * 10 + str[i] - '0';
 
     if(res > 320)
-    	return ERR_OOR;
-
-    // return result.
+    	return ERR_OOR;		// return result.
     return res;
 }
