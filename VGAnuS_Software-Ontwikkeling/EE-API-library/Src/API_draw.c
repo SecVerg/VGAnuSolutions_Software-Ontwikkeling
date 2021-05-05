@@ -377,6 +377,8 @@ int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, uint8_t fontsize, char* fontstyle)
 {
 	uint8_t font_type;
+	uint16_t x1= x;
+	uint8_t y1= y;
 
 	if(strcmp(font, "arial") == 0)
 	{
@@ -384,8 +386,13 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 	}
 
 	for(int i = 0; i < strlen(text); i++){
-		API_Draw_Char(x, y, color, text[i], font_type);
-		x += 9;
+		API_Draw_Char(x1, y1, color, text[i], font_type);
+		if(x1 >= 250){
+			y1+=10;
+			x1 = x;
+		} else {
+			x1+=7;
+		}
 	}
 
 	return 0;
