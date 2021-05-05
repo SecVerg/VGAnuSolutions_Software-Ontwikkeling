@@ -2,7 +2,7 @@
  * API_draw.c
  *
  *  Created on: 29 Apr 2021
- *      Author: secve
+ *      Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 #include "API_draw.h"
 
@@ -452,20 +452,28 @@ int API_Draw_Clearscreen(uint8_t color)
 	return 0;
 }
 
+//-------------------------------------------------------------
 //API bitmap function
+//Arguments:
+//Number : defines specific bitmap
 //0 = happy smiley
 //1 = sad smiley
-// xpos and ypos determine bottom left location
+//2 = arrow upwards
+//3 = arrow downwards
+//4 = arrow right
+//5 = arrow left
+//xpos and ypos determine bottom left location
+//-------------------------------------------------------------
 int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 {
 	uint8_t err = 0;
-	for (uint64_t y = 0; y<27;y++)
+	for (uint64_t y = 0; y<27;y++) // loop for every row in bitmap
 	{
-		for (uint64_t x=0; x<32;x++)
+		for (uint64_t x=0; x<32;x++) // loop for every bit in bitmap
 		{
-			if (numberArray[Number][y] & (0b00000000000000000000000000000001 << x))
+			if (numberArray[Number][y] & (0b00000000000000000000000000000001 << x)) //determines if a specific bit is a 1 or a 0
 			{
-				UB_VGA_SetPixel(x + X_pos,y + Y_pos, 0);
+				UB_VGA_SetPixel(x + X_pos,y + Y_pos, 0);	//sets black bit at the right position
 			}
 		}
 	}
