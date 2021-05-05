@@ -2,11 +2,16 @@
  * API_io.c
  *
  *  Created on: 29 Apr 2021
- *      Author: secve
+ *      Author: secve, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #include "API_io.h"
 
+//-----------------------------------------------------------
+// Draw line function
+// Arguments:
+// void
+// ----------------------------------------------------------
 void API_init_IO(void)
 {
 	// Initialize VGA screen timers/registers
