@@ -171,7 +171,6 @@ uint64_t numberArray[][BIT_AMT] = {
 0b0000001110000000000000000000000,
 0b0000000110000000000000000000000,
 0b0000000010000000000000000000000,
-
 },
 
 };
@@ -248,30 +247,6 @@ int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 		}
 	}
 
-	return err;
-}
-
-int API_Draw_Clearscreen(uint8_t color)
-{
-	UB_VGA_FillScreen(color);
-
-	return 0;
-}
-
-
-
-int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
-{
-	uint8_t err = 0;
-
-	for (int y = 0; y<9;y++)
-	{
-		for (int x=0; x<10;x++)
-		{
-			if (numberArray[Number][y] == 1 << x)
-			UB_VGA_SetPixel(x + X_pos,y + Y_pos,0);
-		}
-	}
 	return err;
 }
 

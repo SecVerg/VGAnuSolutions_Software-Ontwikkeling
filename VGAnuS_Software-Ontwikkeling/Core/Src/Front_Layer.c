@@ -169,6 +169,14 @@ uint8_t FL_Color_Parse(char *text)
 	{
 		res = VGA_COL_YELLOW;
 	}
+	else if(strcmp(text, "bruin") == 0)
+	{
+		res = VGA_COL_BROWN;
+	}
+	else if(strcmp(text, "grijs") == 0)
+	{
+		res = VGA_COL_GREY;
+	}
 	else
 	{
 		return res = ERR_COLOR;
@@ -192,7 +200,7 @@ void FL_Write_Error(int err)
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_EXEC_NYI:
-			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, command nog niet geïmplementeerd.\n", err);
+			sprintf(err_msg, "Command nog niet geimplementeerd.\n");
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_EXEC_UNK:
