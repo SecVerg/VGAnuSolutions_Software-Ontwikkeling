@@ -86,6 +86,8 @@ typedef struct VGA_Command
 
 	uint8_t  Fontsize;		// Fontsize of the text to be displayed on the screen
 							// 1 or 2
+
+	uint8_t Radius;
 } VGA_Command;
 
 

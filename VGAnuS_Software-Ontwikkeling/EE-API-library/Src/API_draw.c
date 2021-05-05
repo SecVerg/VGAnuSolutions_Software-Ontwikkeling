@@ -485,6 +485,35 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 	return 0;
 }
 
+int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
+{
+    // Consider a rectangle of size N*N
+    int N = 2*r+1;
+
+    int x2 = x;
+    int y2 = y;
+    int ax, ay;  // Coordinates inside the rectangle
+    int a;
+    // Draw a square of size N*N.
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            // Start from the left most corner point
+            ax = i-r;
+            ay = j-r;
+            // If this point is inside the circle, print it
+            if (((ax*ax) + (ay*ay)) <= r*r+1 )
+            {
+            	UB_VGA_SetPixel((ax+x),(ay+y), color);
+            }
+//            else // If outside the circle, print space
+
+        }
+    }
+    return 0;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Draw Char
 ///

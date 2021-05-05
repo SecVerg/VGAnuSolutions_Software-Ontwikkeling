@@ -81,22 +81,27 @@ int FL_Parse(char *buf)
 		CMD.CMD_Type = CLRS;
 		CMD.Color = FL_Color_Parse(*pToken++);
 	}
-	else if(strcmp(*pToken, "wacht") == 0)										//BONUS COMMAND
+	else if(strcmp(*pToken, "wacht") == 0)										//BONUS COMMAND "WAIT"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"wacht command\n", 14, 10);
 		CMD.CMD_Type = WAIT;
 	}
-	else if(strcmp(*pToken, "herhaal") == 0)									//BONUS COMMAND
+	else if(strcmp(*pToken, "herhaal") == 0)									//BONUS COMMAND "HERHAAL"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"herhaal command\n", 16, 10);
 		CMD.CMD_Type = REPT;
 	}
-	else if(strcmp(*pToken, "cirkel") == 0)										//BONUS COMMAND
+	else if(strcmp(*pToken, "cirkel") == 0)										//BONUS COMMAND "CIRKEL"
 	{
+		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"cirkel command\n", 15, 10);
 		CMD.CMD_Type = CIRC;
+		CMD.X_pos = (uint16_t)strtopos(*pToken++);
+		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
+		CMD.Color = FL_Color_Parse(*pToken++);
+		CMD.Radius = (uint8_t)atoi(*pToken++);
 	}
-	else if(strcmp(*pToken, "figuur") == 0)										//BONUS COMMAND
+	else if(strcmp(*pToken, "figuur") == 0)										//BONUS COMMAND "FIGUUR"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"figuur command\n", 15, 10);
 		CMD.CMD_Type = FIGU;
