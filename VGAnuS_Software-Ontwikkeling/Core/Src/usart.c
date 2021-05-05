@@ -224,10 +224,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 		err = FL_Parse(UART2_txBuffer);
 
+		// handle errors that may have occurred
 		if(err){
 			FL_Write_Error(err);
 		}
 
+		// Reset UART buffers
 		for (int i = 0; i < TX_BUFSIZE; i++){
 			UART2_txBuffer[i] = '\000';
 		}

@@ -40,9 +40,9 @@ typedef struct VGA_Command
 	uint8_t Color;			// Specifies the color of the item to be
 							// displayed on the screen
 
-	uint8_t  Number;
+	uint8_t  Number;		// Bitmap number see: API_Draw_Bitmap()
 
-	uint8_t  Thickness;
+	uint8_t  Thickness;		// Width of a line
 
 	char*	 Text;			// Text string to be displayed on the screen
 
@@ -55,11 +55,13 @@ typedef struct VGA_Command
 	uint8_t  Fontsize;		// Fontsize of the text to be displayed on the screen
 							// 1 or 2
 
-	uint8_t Radius;
+	uint8_t Radius;			// Circle radius
 } VGA_Command;
 
+// Amount of bits in a bitmap line
 #define BIT_AMT  27
 
+// Defines for various Fonts, currently only Arial Normal is functional
 #define ARIAL_NORM		0x00
 #define ARIAL_THICC		0x01
 #define ARIAL_CURS		0x02
@@ -67,9 +69,11 @@ typedef struct VGA_Command
 #define CONSOLAS_THICC	0x04
 #define CONSOLAS_CURS	0x05
 
+// Buffersize of error message
 #define MAX_ERRMSG_SIZE   128
 
-#define LINE 0x1		//lijn
+// Command types
+#define LINE 0x1		//Lijn
 #define RECT 0x2		//Rechthoek
 #define TEXT 0x3		//text
 #define BITM 0x4		//Bitmap
@@ -80,6 +84,7 @@ typedef struct VGA_Command
 #define FIGU 0x9		//Figuur
 #define EXEC 0xA		//Execute
 
+// Error codes
 #define ERR_PARSE 			0x10
 #define ERR_COLOR 			0x11
 #define ERR_EXEC  			0x12
