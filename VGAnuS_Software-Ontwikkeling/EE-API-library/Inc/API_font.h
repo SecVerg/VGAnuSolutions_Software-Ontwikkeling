@@ -13,7 +13,9 @@
 #define MAX_FONT_BYTES 		26
 #define CHAR_AMT			100
 #define FONT_AMT			6
+#define SPECIAL_CHAR_AMT	6
 
-const char Font_Array[FONT_AMT][CHAR_AMT][MAX_FONT_BYTES];
+extern const char Font_Array[FONT_AMT][CHAR_AMT][MAX_FONT_BYTES];
+extern const char Special_Char_Array[SPECIAL_CHAR_AMT];
 
 #endif /* INC_API_FONT_H_ */

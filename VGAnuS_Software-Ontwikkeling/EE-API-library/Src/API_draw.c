@@ -225,19 +225,57 @@ int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t 
 	// get character index for bitmap array
 	uint16_t index = (uint16_t)character - ASCII_START;
 	uint8_t character_byte;
+	uint8_t special_char_counter = 0;
+	uint8_t special_char = 0;
+
+
+	if (font == ARIAL_CURS) // character has 2 bytes per row
+		special_char = Special_Char(character);
 
 	// go through all bytes
-	for(int i = 0; i < MAX_FONT_BYTES; i++){
+	for(int i = 0; i <= MAX_FONT_BYTES; i++){
 		// go through bits in byte
 		for (int j = 0; j < BITS_IN_BYTE; j++){
-			// if bit is 1 display on screen
+			// get byte for character from font array
 			character_byte = Font_Array[font][index][i];
-			if (character_byte & (BYTE_CHECK_BEGIN >> j))
+
+			if (special_char) // character has 2 bytes per row
 			{
-				UB_VGA_SetPixel(j + x, i + y, color);
+				if (character_byte & (BYTE_CHECK_BEGIN >> j)) // if bit is 1
+				{
+					if (i % 2 == 1) // second byte, has to be shifted to the right by 8 pixels
+						UB_VGA_SetPixel(j + BITS_IN_BYTE + x, special_char_counter + y, color);
+					else // first byte
+						UB_VGA_SetPixel(j + x, special_char_counter + y, color);
+				}
+			}
+			else
+			{
+				// if bit is 1 write to screen
+				if (character_byte & (BYTE_CHECK_BEGIN >> j))
+				{
+					UB_VGA_SetPixel(j + x, i + y, color);
+				}
 			}
 		}
+
+		// only increment this if i is an equal number
+		// y position for special character is the same for 2 bytes
+		special_char_counter += i % 2;
 	}
 
+	return 0;
+}
+
+int Special_Char(char c)
+{
+	// go through special char array and return 1 if given char is in this array
+	for (int i = 0; i < SPECIAL_CHAR_AMT; i++)
+	{
+		if(c == Special_Char_Array[i])
+		{
+			return 1;
+		}
+	}
 	return 0;
 }

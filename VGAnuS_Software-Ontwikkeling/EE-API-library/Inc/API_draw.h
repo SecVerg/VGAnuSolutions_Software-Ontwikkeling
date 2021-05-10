@@ -18,5 +18,6 @@ int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos);
 int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, uint8_t fontsize, char* fontstyle);
 int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t font);
 int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color);
+int Special_Char(char c);
 
 #endif /* INC_API_DRAW_H_ */

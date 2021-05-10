@@ -7,6 +7,11 @@
 
 #include "API_font.h"
 
+const char Special_Char_Array[SPECIAL_CHAR_AMT]=
+{
+	'%', '@', 'M', 'W', 'w'
+};
+
 const char Font_Array[FONT_AMT][CHAR_AMT][MAX_FONT_BYTES] =
 { // ARIAL NORMAL
 	{
