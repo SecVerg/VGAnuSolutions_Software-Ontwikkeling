@@ -1,8 +1,8 @@
-/*
- * API_Font.h
+/**
+ * @file API_Font.h
  *
  *  Created on: May 10, 2021
- *      Author: secve
+ *    @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #ifndef INC_API_FONT_H_

@@ -1,16 +1,15 @@
 /**
- * Logic_Layer.c
+ * @file Logic_Layer.c
  * @brief Logic Layer functions as mediator between Front_Layer and I/O_Layer
  *  Created on: 23 apr. 2021
- *      Author: Maarten van Dijk, Christiaan Meerkerk, Stijn Vergouwen
+ *    @authors: Maarten van Dijk, Christiaan Meerkerk, Stijn Vergouwen
  */
 
 #include "Logic_Layer.h"
 
-
 /**
- * Command execution
- * @brief Uses the command struct to execute the correct functions in the I/O layer.
+ * @brief Command execution:
+ * Uses the command struct to execute the correct functions in the I/O layer.
  * @param[in] VGA_Command CMD
  * 			The given command is struct VGA_Command located in main.h
  *
@@ -34,7 +33,8 @@ int LL_exec_command(VGA_Command CMD)
 			return API_Draw_Bitmap(CMD.Number, CMD.X_pos, CMD.Y_pos);
 
 		case CLRS:
-			return API_Draw_Clearscreen(CMD.Color);
+			API_Draw_Clearscreen(CMD.Color);
+			return 0;
 
 		// Bonus command types :
 		case WAIT:

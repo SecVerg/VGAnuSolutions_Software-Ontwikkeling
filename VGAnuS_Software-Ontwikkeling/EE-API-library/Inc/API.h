@@ -1,8 +1,8 @@
-/*
- * API.h
+/**
+ * @file API.h
  *
  *  Created on: 29 Apr 2021
- *      Author: secve
+ *     @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #ifndef INC_API_H_
@@ -92,8 +92,8 @@ typedef struct VGA_Command
 #define ERR_EXEC  			0x12
 #define ERR_EXEC_NYI	 	0x13
 #define ERR_EXEC_UNK	 	0x14
-#define ERR_OOR				0x20
-
+#define ERR_FONT			0x15
+#define ERR_OOR				0x16
 
 #define BYTE_CHECK_BEGIN 	0b10000000
 #define BITS_IN_BYTE		8

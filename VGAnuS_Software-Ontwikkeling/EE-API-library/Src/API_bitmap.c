@@ -1,8 +1,8 @@
 /**
- * API_bitmap.c
- * @brief contains used bitmaps
+ * @file 	API_bitmap.c
+ * @brief 	contains used bitmaps.
  *  Created on: May 10, 2021
- *      Author: secve
+ *    @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #include "API_bitmap.h"

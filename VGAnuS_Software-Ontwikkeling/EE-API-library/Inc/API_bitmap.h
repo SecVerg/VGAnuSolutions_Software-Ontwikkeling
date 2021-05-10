@@ -1,8 +1,8 @@
-/*
- * API_bitmap.h
+/**
+ * @file API_bitmap.h
  *
  *  Created on: May 10, 2021
- *      Author: secve
+ *    @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #ifndef INC_API_BITMAP_H_

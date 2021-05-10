@@ -1,8 +1,8 @@
-/*
- * API_io.h
+/**
+ * @file API_io.h
  *
  *  Created on: 29 Apr 2021
- *      Author: secve
+ *    @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #ifndef INC_API_IO_H_

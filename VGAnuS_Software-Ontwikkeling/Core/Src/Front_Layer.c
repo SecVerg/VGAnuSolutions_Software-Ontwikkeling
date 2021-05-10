@@ -1,16 +1,20 @@
-/**
- * Front_Layer.c
+/**------------------------------------------------
+ * @file Front_Layer.c
  * @brief User interface and string parsing
  * Created on: 29 Apr 2021
- * Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
+ * @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #include "Front_Layer.h"
 
-/**
- * @brief Extract all the tokens from the terminal by seperating them at the delimiter.
- *
+/**------------------------------------------------
+ * @brief Parse command string function
+ * Extract all the tokens from the terminal by
+ * seperating them at the delimiter. Fills a
+ * VGA_Command struct with the tokens and sends it
+ * to the logic layer.
  * @param *buf pointer to received buffer
+ * @retval error code from LL_Exec_Command
  */
 int FL_Parse(char *buf)
 {
@@ -33,7 +37,7 @@ int FL_Parse(char *buf)
 
 	// Compare first index of buffer with the command types
 	// If they are the same, fill VGA_Command struct with the arguments
-	// Command types:
+	// Command attributes:
 	//	X_pos: 		0 - 320. 			first X coordinate for the pixels to be printed
 	//	Y_pos:	 	0 - 240. 			First Y coordinate for the pixel to be printed
 	//	X_Sec_Pos 	0 - 320: 			Secondairy x coordinate for the pixels to be printed
@@ -44,80 +48,80 @@ int FL_Parse(char *buf)
 	//	Height:							Command type for rectangle only; the height of the rectangle
 	//	Filled:	 	0 - 1				0: Not filled, 1: filled
 	//	Font:		Arial, consolas		Choose the font in which the text will be diplayed. !!The font Consolas is not yet available)!!
-	if(strcmp(*pToken, "lijn") == 0)											//Fill the struct for line command
+	if(strcmp(*pToken, LIJN) == 0)											//Fill the struct for line command
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"lijn command\n", 13, 10);
 		CMD.CMD_Type = LINE;
-		CMD.X_pos = (uint16_t)strtopos(*pToken++);
-		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
-		CMD.X_sec_pos = (uint16_t)strtopos(*pToken++);
-		CMD.Y_sec_pos = (uint8_t)strtopos(*pToken++);
+		CMD.X_pos = (uint16_t)strtopos(*pToken++, 'x');
+		CMD.Y_pos = (uint8_t)strtopos(*pToken++, 'y');
+		CMD.X_sec_pos = (uint16_t)strtopos(*pToken++, 'x');
+		CMD.Y_sec_pos = (uint8_t)strtopos(*pToken++, 'y');
 		CMD.Color = FL_Color_Parse(*pToken++);
 		CMD.Thickness = (uint8_t)atoi(*pToken);
 	}
-	else if(strcmp(*pToken, "rechthoek") == 0)									//Fill the struct for rectangle command
+	else if(strcmp(*pToken, RECHTHOEK) == 0)									//Fill the struct for rectangle command
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"rechthoek command\n", 18, 10);
 		CMD.CMD_Type = RECT;
-		CMD.X_pos = (uint16_t)strtopos(*pToken++);
-		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
+		CMD.X_pos = (uint16_t)strtopos(*pToken++, 'x');
+		CMD.Y_pos = (uint8_t)strtopos(*pToken++, 'y');
 		CMD.Width = (uint16_t)atoi(*pToken++);
 		CMD.Height = (uint8_t)atoi(*pToken++);
 		CMD.Color = FL_Color_Parse(*pToken++);
 		CMD.Filled = (uint8_t)atoi(*pToken);
 	}
-	else if(strcmp(*pToken, "tekst") == 0)
+	else if(strcmp(*pToken, TEKST) == 0)
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"tekst command\n", 14, 10);		//Fill the struct for tekst command
 		CMD.CMD_Type = TEXT;
-		CMD.X_pos = (uint16_t)strtopos(*pToken++);
-		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
+		CMD.X_pos = (uint16_t)strtopos(*pToken++, 'x');
+		CMD.Y_pos = (uint8_t)strtopos(*pToken++, 'y');
 		CMD.Color = FL_Color_Parse(*pToken++);
 		CMD.Text = *pToken++;
 		CMD.Font = *pToken++;
 		CMD.Fontsize = (uint8_t)atoi(*pToken++);
 		CMD.Fontstyle = *pToken;
 	}
-	else if(strcmp(*pToken, "bitmap") == 0)
+	else if(strcmp(*pToken, BITMAP) == 0)
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"bitmap command\n", 15, 10);		//Fill the struct for bitmap command
 		CMD.CMD_Type = BITM;
 		CMD.Number = (uint8_t) atoi(*pToken++);
-		CMD.X_pos = (uint8_t) strtopos(*pToken++);
-		CMD.Y_pos = (uint8_t) strtopos(*pToken);
+		CMD.X_pos = (uint8_t) strtopos(*pToken++, 'x');
+		CMD.Y_pos = (uint8_t) strtopos(*pToken, 'y');
 	}
-	else if(strcmp(*pToken, "clearscherm") == 0)
+	else if(strcmp(*pToken, CLEARSCHERM) == 0)
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"clearscherm command\n", 20, 10);	//Fill the struct for clearscherm
 		CMD.CMD_Type = CLRS;
 		CMD.Color = FL_Color_Parse(*pToken++);
 	}
-	else if(strcmp(*pToken, "wacht") == 0)										//BONUS COMMAND "WAIT"
+	else if(strcmp(*pToken, WACHT) == 0)										//BONUS COMMAND "WAIT"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"wacht command\n", 14, 10);
 		CMD.CMD_Type = WAIT;
 	}
-	else if(strcmp(*pToken, "herhaal") == 0)									//BONUS COMMAND "HERHAAL"
+	else if(strcmp(*pToken, HERHAAL) == 0)									//BONUS COMMAND "HERHAAL"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"herhaal command\n", 16, 10);
 		CMD.CMD_Type = REPT;
 	}
-	else if(strcmp(*pToken, "cirkel") == 0)										//BONUS COMMAND "CIRKEL"
+	else if(strcmp(*pToken, CIRKEL) == 0)										//BONUS COMMAND "CIRKEL"
 	{
 		pToken++;
 		HAL_UART_Transmit(&huart2, (uint8_t *)"cirkel command\n", 15, 10);
 		CMD.CMD_Type = CIRC;
-		CMD.X_pos = (uint16_t)strtopos(*pToken++);
-		CMD.Y_pos = (uint8_t)strtopos(*pToken++);
+		CMD.X_pos = (uint16_t)strtopos(*pToken++, 'x');
+		CMD.Y_pos = (uint8_t)strtopos(*pToken++, 'y');
 		CMD.Radius = (uint8_t)atoi(*pToken++);
 		CMD.Color = FL_Color_Parse(*pToken++);
 	}
-	else if(strcmp(*pToken, "figuur") == 0)										//BONUS COMMAND "FIGUUR"
+	else if(strcmp(*pToken, FIGUUR) == 0)										//BONUS COMMAND "FIGUUR"
 	{
 		HAL_UART_Transmit(&huart2, (uint8_t *)"figuur command\n", 15, 10);
 		CMD.CMD_Type = FIGU;
@@ -140,13 +144,14 @@ int FL_Parse(char *buf)
 
 
 /**------------------------------------------------
-//@brief Color Parse function:
-//Arguments:	Text : pointer to the CMD command "TEXT"
-//Description: 	Compare the entered string for "color" with specific words like "zwart" or "groen".
-//				If the entered string matches a word, the variable "res" receives a specific value. This is the color
-//				that the pixels will be when they turn on.
+* @brief Color Parse function:
+* Compare the entered string for "color" with specific words like "zwart" or "groen".
+* If the entered string matches a word, the variable "res" receives a specific value. This is the color
+* that the pixels will be when they turn on.
+* @param[in] pointer to the CMD command "TEXT"
+* @retval	ERR_COLOR
+* 			Color code if success
 */
-
 uint8_t FL_Color_Parse(char *text)
 {
 	uint8_t res = 0;
@@ -213,13 +218,18 @@ uint8_t FL_Color_Parse(char *text)
 	}
 	else
 	{
-		return res = ERR_COLOR;
+		return ERR_COLOR;
 	}
 
 	return res;
 }
 
-//Error database
+/**------------------------------------------------
+* @brief Write error function:
+* Sends an error message over UART corresonding to the given errorcode.
+* @param[in] pointer to the CMD command "TEXT"
+* @retval None
+*/
 void FL_Write_Error(int err)
 {
 	char err_msg[MAX_ERRMSG_SIZE];
@@ -249,7 +259,18 @@ void FL_Write_Error(int err)
 	}
 }
 
-int strtopos(char* str)
+/**------------------------------------------------
+* @brief String to position function:
+* Takes numbers from a string returns them in the
+* from of an int.
+* Returns an error code when the number is negative
+* or larger than the amount of pixels in x or y
+* direction.
+* @param[in] pointer to the CMD command "TEXT"
+* @retval	ERR_OOR
+* 			0 if success
+*/
+int strtopos(char* str, char xy)
 {
     // Initialize result
     int res = 0;
@@ -267,7 +288,11 @@ int strtopos(char* str)
     for (int i = 0; str[i] != '\0'; ++i)
         res = res * 10 + str[i] - '0';
 
-    if(res > 320)
-    	return ERR_OOR;		// return result.
+    // check if number is heigher than amount of pixels on display
+    if((res > VGA_DISPLAY_X && xy == 'x') || (res > VGA_DISPLAY_Y && xy == 'y'))
+    {
+    	return ERR_OOR;		// return error.
+    }
+
     return res;
 }

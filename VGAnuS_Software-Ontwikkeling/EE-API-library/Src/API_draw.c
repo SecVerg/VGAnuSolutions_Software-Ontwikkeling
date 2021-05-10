@@ -1,23 +1,29 @@
 /**
- * API_draw.c
+ * @file  API_draw.c
  * @brief API_draw contains all functions that directly write to the screen
  *  Created on: 29 Apr 2021
- *      Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
+ *    @authors: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 #include "API_draw.h"
 
 /** ----------------------------------------------------------
-// @brief Draw line function
-// Arguments:
-// @param[in] x1,y1,x2,x2 : coords of beginning and end of line
-// @param[in] color : color of the line
-// @param[in] thicc : thickness of the line
+ * @brief Draw line function:
+ * Draws a line on the screen using the given coordinates.
+ * @param[in] x1,y1,x2,x2 : coords of beginning and end of line
+ * @param[in] color : color of the line
+ * @param[in] thicc : thickness of the line
+ * @retval 	Error code if coordinates are out of range.
+ * 			0 if success.
 */
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
-int err = 0;
-int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i,k; //
-float slope;
+	int dx,dy,sdx,sdy,px,py,dxabs,dyabs,i,k; //
+	float slope;
+
+	if(x1 > VGA_DISPLAY_X || x2 > VGA_DISPLAY_X || y1 > VGA_DISPLAY_Y || y2 > VGA_DISPLAY_Y)
+	{
+		return ERR_OOR;		// return error.
+	}
 
 	dx = x2 - x1; /* the horizontal distance of the line */
 	dy = y2 - y1; /* the vertical distance of the line */
@@ -45,24 +51,31 @@ float slope;
 				UB_VGA_SetPixel(px + k, py, color);
 		}
 	}
-	return err;
+
+	return 0;
 }
 
 /**-----------------------------------------------------------
-// @brief Draw rectangle function
-// Arguments:
-// @param[in] x1,y1 : coords of top left corner of rectangle
-// @param[in] width : width of the rectangle in pixels
-// @param[in] height: height of the rectangle in pixels
-// @param[in] color : color of the rectangle
-// @param[in] filled: if the rectangle is filled with color or just the outlines
-// 			1 is filled, 0 is just outlines
+ * @brief Draw rectangle function:
+ * Draws a rectangle on the screen using the given coordinates
+ * and a width and height.
+ * @param[in] x1,y1 : coords of top left corner of rectangle
+ * @param[in] width : width of the rectangle in pixels
+ * @param[in] height: height of the rectangle in pixels
+ * @param[in] color : color of the rectangle
+ * @param[in] filled: if the rectangle is filled with color or just the outlines
+ * 			1 is filled, 0 is just outlines
+ * @retval 	Error code if something went wrong
+ * 			0 if success
 */
 int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
 {
-	uint8_t err = 0;
 	uint16_t xcount, ycount;
 
+	if(x > VGA_DISPLAY_X || y > VGA_DISPLAY_X)
+	{
+		return ERR_OOR;		// return error.
+	}
 
 	for(ycount = 0; ycount < VGA_DISPLAY_Y; ycount++)
 	{
@@ -86,23 +99,23 @@ int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 		}
 	}
 
-	return err;
-}
-
-/**-----------------------------------------------------------
- * @brief Draw clearscreen function clears the screen and fills with a specified color
- * Arguments:
- * @param[in] color : color of the screen to be filled with
-*/
-int API_Draw_Clearscreen(uint8_t color)
-{
-	UB_VGA_FillScreen(color);
-
 	return 0;
 }
 
-/**
+/**-----------------------------------------------------------
+ * @brief Draw clearscreen function:
+ * Clears the screen and fills with a specified color.
+ * @param[in] color : color of the screen to be filled with
+ * @retval	None
+*/
+void API_Draw_Clearscreen(uint8_t color)
+{
+	UB_VGA_FillScreen(color);
+}
+
+/**-----------------------------------------------------------
  * @brief API bitmap function
+ * Draws a bitmap on screen on the given coordinates.
  * @param[in] number : selects a bitmap
  * 		0 = happy smiley
  * 		1 = sad smiley
@@ -113,38 +126,52 @@ int API_Draw_Clearscreen(uint8_t color)
  * @param[in] X_pos : X coordinate
  * @param[in] Y_pos : Y coordinate
  * 		xpos and ypos determine bottom left location
+ * @retval 	Error code if something went wrong
+ * 			0 if success
 */
 int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 {
-	uint8_t err = 0;
-	for (uint64_t y = 0; y<27;y++)
+	if(X_pos > VGA_DISPLAY_X || Y_pos > VGA_DISPLAY_X)
 	{
-		for (uint64_t x=0; x<32;x++)
+		return ERR_OOR;		// return error.
+	}
+
+	for (uint64_t y = 0; y < 27; y++)
+	{
+		for (uint64_t x = 0; x < 32; x++)
 		{
-			if (numberArray[Number][y] & (0b00000000000000000000000000000001 << x))
+			if (numberArray[Number][y] & (BIT_SHIFTER << x))
 			{
 				UB_VGA_SetPixel(x + X_pos,y + Y_pos, 0);
 			}
 		}
 	}
-	return err;
+
+	return 0;
 }
 
 /**-----------------------------------------------------------
- * @brief Draw text function
- * Arguments:
+ * @brief Draw text function:
+ * Writes given text on screen.
  * @param[in] x1,y1 : coords of top left corner of text
  * @param[in] color : color of the text
  * @param[in] text  : the text to be displayed on the screen
  * @param[in] font  : font of the text to be displayed in
  * @param[in] fontsize: size of the letters (1 - 2)
  * @param[in] fontstyle: cursif, bold, normal
+ * @retval 	ERR_FONT or ERR_OOR
+ * 			0 if success
 */
 int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, uint8_t fontsize, char* fontstyle)
 {
 	uint8_t font_type;
-	uint16_t x1= x;
-	uint8_t y1= y;
+	uint16_t x1 = x;
+	uint8_t y1 = y;
+
+	if(x > VGA_DISPLAY_X || y > VGA_DISPLAY_X)
+	{
+		return ERR_OOR;		// return error.
+	}
 
 	if(strcmp(font, "arial") == 0)
 	{
@@ -152,29 +179,41 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 		{
 			font_type = ARIAL_THICC;
 		}
-		if(strcmp(fontstyle, "cursief") == 0)
+		else if(strcmp(fontstyle, "cursief") == 0)
 		{
 			font_type = ARIAL_CURS;
 		}
-		else
+		else if(strcmp(fontstyle, "normaal") == 0)
 		{
 			font_type = ARIAL_NORM;
 		}
+		else
+		{
+			return ERR_FONT;
+		}
 	}
-	if(strcmp(font, "consolas") == 0)
+	else if(strcmp(font, "consolas") == 0)
 	{
 		if(strcmp(fontstyle, "vet") == 0)
 		{
 			font_type = CONSOLAS_THICC;
 		}
-		if(strcmp(fontstyle, "cursief") == 0)
+		else if(strcmp(fontstyle, "cursief") == 0)
 		{
 			font_type = CONSOLAS_CURS;
 		}
-		else
+		else if(strcmp(fontstyle, "normaal") == 0)
 		{
 			font_type = CONSOLAS_NORM;
 		}
+		else
+		{
+			return ERR_FONT;
+		}
+	}
+	else
+	{
+		return ERR_FONT;
 	}
 
 	for(int i = 0; i < strlen(text); i++){
@@ -187,22 +226,29 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 		}
 	}
 
-
 	return 0;
 }
 
 /**-----------------------------------------------------------
- * @brief Draw circle function
- * Arguments:
+ * @brief Draw circle function:
+ * Draws a circle on the screen using the given coordinates
+ * and radius.
  * @param[in] x1,y1 : coords of middle of circle
- * @param[in] r  	 : radius of circle
+ * @param[in] r  	: radius of circle
  * @param[in] color : color of the circle
+ * @retval 	ERR_OOR
+ * 			0 if success
 */
 int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
 {
     // Consider a rectangle of size N*N
     int N = 2*r+1;
     int ax, ay;  // Coordinates inside the rectangle
+
+    if(x > VGA_DISPLAY_X || y > VGA_DISPLAY_X)
+	{
+		return ERR_OOR;		// return error.
+	}
 
     // Draw a square of size N*N.
     for (int i = 0; i < N; i++)
@@ -223,11 +269,14 @@ int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
 }
 
 /**-----------------------------------------------------------
- * @brief Draw char function
- * Arguments:
+ * @brief Draw char function:
+ * Draws a character bitmap on the screen of the given
+ * character.
  * @param[in] x1,y1 : coords of top left corner of char
  * @param[in] color : color of the char
  * @param[in] font  : font of the letter to be displayed in
+ * @retval	ERR_OOR
+ * 			0 if success
 */
 int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t font)
 {
@@ -237,8 +286,12 @@ int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t 
 	uint8_t special_char_counter = 0;
 	uint8_t special_char = 0;
 
+	if(x > VGA_DISPLAY_X || y > VGA_DISPLAY_X)
+	{
+		return ERR_OOR;		// return error.
+	}
 
-	if (font == ARIAL_CURS) // character has 2 bytes per row
+	if (font == ARIAL_CURS || font == ARIAL_THICC) // character has 2 bytes per row
 		special_char = Special_Char(character);
 
 	// go through all bytes
@@ -276,6 +329,14 @@ int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t 
 	return 0;
 }
 
+
+/**-----------------------------------------------------------
+ * @brief Special Char function:
+ * Gives back a 1 if character is special (2 byte row bitmap).
+ * Gives back 0 if its not.
+ * @param[in] c : character to be checked
+ * @retval	0 or 1
+*/
 int Special_Char(char c)
 {
 	// go through special char array and return 1 if given char is in this array
