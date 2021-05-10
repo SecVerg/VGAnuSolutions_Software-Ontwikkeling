@@ -1,6 +1,6 @@
 /**
  * Logic_Layer.c
- * @brief Functions as mediator between Front_Layer and I/O_Layer
+ * @brief Logic Layer functions as mediator between Front_Layer and I/O_Layer
  *  Created on: 23 apr. 2021
  *      Author: Maarten van Dijk, Christiaan Meerkerk, Stijn Vergouwen
  */

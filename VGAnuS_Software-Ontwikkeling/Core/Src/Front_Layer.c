@@ -1,15 +1,17 @@
-/*
+/**
  * Front_Layer.c
- *
+ * @brief User interface and string parsing
  * Created on: 29 Apr 2021
  * Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 
 #include "Front_Layer.h"
 
-//----------------------------------------
-//Description:	Extract all the tokens from the terminal by seperating them at the delimiter.
-
+/**
+ * @brief Extract all the tokens from the terminal by seperating them at the delimiter.
+ *
+ * @param *buf pointer to received buffer
+ */
 int FL_Parse(char *buf)
 {
 	char *token = '\0';
@@ -137,13 +139,13 @@ int FL_Parse(char *buf)
 }
 
 
-//------------------------------------------------
-//Color Parse function:
+/**------------------------------------------------
+//@brief Color Parse function:
 //Arguments:	Text : pointer to the CMD command "TEXT"
 //Description: 	Compare the entered string for "color" with specific words like "zwart" or "groen".
 //				If the entered string matches a word, the variable "res" receives a specific value. This is the color
 //				that the pixels will be when they turn on.
-//------------------------------------------------
+*/
 
 uint8_t FL_Color_Parse(char *text)
 {
