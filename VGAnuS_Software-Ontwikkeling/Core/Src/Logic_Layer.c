@@ -1,6 +1,6 @@
-/*
+/**
  * Logic_Layer.c
- *
+ * @brief Functions as mediator between Front_Layer and I/O_Layer
  *  Created on: 23 apr. 2021
  *      Author: Maarten van Dijk, Christiaan Meerkerk, Stijn Vergouwen
  */
@@ -8,13 +8,15 @@
 #include "Logic_Layer.h"
 
 
-// -----------------------------------------------------------------------------------------
-// Command execution
-// This function uses the command to execute the correct functions in the I/O layer
-// The given command is struct VGA_Command located in main.h
-// Functions not yet supported return ERR_EXEC_NYI (Not Yet Implemented)
-// Errors from API functions are also returned
-// ----------------------------------------------------------------------------------------
+/**
+ * Command execution
+ * @brief Uses the command struct to execute the correct functions in the I/O layer.
+ * @param[in] VGA_Command CMD
+ * 			The given command is struct VGA_Command located in main.h
+ *
+ * @retval Functions not yet supported return ERR_EXEC_NYI (Not Yet Implemented)
+ * @retval Error codes from API functions are also returned
+*/
 int LL_exec_command(VGA_Command CMD)
 {
 	switch(CMD.CMD_Type)
