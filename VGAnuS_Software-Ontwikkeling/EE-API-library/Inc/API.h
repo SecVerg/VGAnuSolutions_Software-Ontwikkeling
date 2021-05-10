@@ -8,9 +8,11 @@
 #ifndef INC_API_H_
 #define INC_API_H_
 
+#include "API_font.h"
 #include "main.h"
 #include "API_io.h"
 #include "API_draw.h"
+#include "API_bitmap.h"
 
 typedef struct VGA_Command
 {
@@ -61,7 +63,7 @@ typedef struct VGA_Command
 // Amount of bits in a bitmap line
 #define BIT_AMT  27
 
-// Defines for various Fonts, currently only Arial Normal is functional
+// Defines for various Fonts
 #define ARIAL_NORM		0x00
 #define ARIAL_THICC		0x01
 #define ARIAL_CURS		0x02
@@ -91,6 +93,11 @@ typedef struct VGA_Command
 #define ERR_EXEC_NYI	 	0x13
 #define ERR_EXEC_UNK	 	0x14
 #define ERR_OOR				0x20
+
+
+#define BYTE_CHECK_BEGIN 	0b10000000
+#define BITS_IN_BYTE		8
+#define ASCII_START			32
 
 #define sgn(x) ((x<0)?-1:((x>0)?1:0)) /* macro to return the sign of a number */
 
