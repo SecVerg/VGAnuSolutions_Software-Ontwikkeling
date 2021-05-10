@@ -127,7 +127,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     __HAL_LINKDMA(uartHandle,hdmatx,hdma_usart2_tx);
 
     /* USART2 interrupt Init */
-    HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(USART2_IRQn, 15, 0);
     HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
 
@@ -166,6 +166,11 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
+/**
+  * @brief  UART rx callback, function gets called when UART message is received.
+  * @param
+  * @retval void
+  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	// UART Rx Complete Callback;
 	// Rx Complete is called by: DMA (automatically), if it rolls over
@@ -178,7 +183,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	// variable first and len will not be zero.
 	int err = 0;
 
-	if(__HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE)) {									// Check if it is an "Idle Interrupt"
+	if(__HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE))
+	{									// Check if it is an "Idle Interrupt"
 		__HAL_UART_CLEAR_IDLEFLAG(&huart2);												// clear the interrupt
 		RxCounter++;																	// increment the Rx Counter
 
@@ -188,57 +194,83 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		uint16_t len = RX_BUFSIZE;														// init len with max. size
 
 
-		if(RxRollover < 2)  {
-			if(RxRollover) {															// rolled over once
-				if(RxBfrPos <= start) len = RxBfrPos + RX_BUFSIZE - start;				// no bytes overwritten
-				else len = RX_BUFSIZE + 1;												// bytes overwritten error
-			} else {
-				len = RxBfrPos - start;													// no bytes overwritten
-				if(UART2_rxBuffer[RxBfrPos-1] == '\r'){
-					len = RxBfrPos - start - 2;
+		if(RxRollover < 2)
+		{
+			if(RxRollover)
+			{
+				// rolled over once
+				if(RxBfrPos <= start)
+				{
+					// no bytes overwritten
+					len = RxBfrPos + RX_BUFSIZE - start;
+				}
+				else
+				{
+					// bytes overwritten error
+					len = RX_BUFSIZE + 1;
 				}
 			}
-		} else {
-			len = RX_BUFSIZE + 2;														// dual rollover error
+			else
+			{
+				// no bytes overwritten
+				len = RxBfrPos - start;
+			}
+		}
+		else
+		{
+			// dual rollover error
+			len = RX_BUFSIZE + 2;
 		}
 
-		if(len && (len <= RX_BUFSIZE)) {
-			// create response message
-			#ifdef UART_DBG
-				sprintf(UART2_txBuffer, "ACK RxC:%d S:%d L:%d RO:%d RXp:%d >>", RxCounter, start, len, RxRollover, RxBfrPos);
 
-			#else
-				//sprintf(UART2_txBuffer, "U heeft ingevoerd:");
-			#endif
-			TxSize = strlen(UART2_txBuffer);
-
+		if(len && (len <= RX_BUFSIZE))
+		{
+			// the received bytes are > 0 and lower than buffer size
 			// add received bytes to UART2_txBuffer
 			uint8_t i;
-			for(i = 0; i < len; i++) *(UART2_txBuffer + TxSize + i) = *(UART2_rxBuffer + ((start + i) % RX_BUFSIZE));
+			for(i = 0; i < len; i++)
+			{
+				*(UART2_txBuffer + TxSize + i) = *(UART2_rxBuffer + ((start + i) % RX_BUFSIZE));
+			}
 			TxSize += i;
-		} else {
+		}
+		else
+		{
 			// buffer overflow error:
 			sprintf(UART2_txBuffer, "NAK RX BUFFER OVERFLOW ERROR %d\r\n", (len - RX_BUFSIZE));	// Change error message
 			TxSize = strlen(UART2_txBuffer);
 		}
 
+		// Remove windows line endings if these are present
+		if (UART2_txBuffer[TxSize-1] == '\r'){
+			UART2_txBuffer[TxSize-1] = '\0';
+			UART2_txBuffer[TxSize-2] = '\0';
+		}
+
+		// Send received
 		err = FL_Parse(UART2_txBuffer);
 
 		// handle errors that may have occurred
-		if(err){
+		if(err)
+		{
 			FL_Write_Error(err);
 		}
 
 		// Reset UART buffers
-		for (int i = 0; i < TX_BUFSIZE; i++){
+		for (int i = 0; i < TX_BUFSIZE; i++)
+		{
 			UART2_txBuffer[i] = '\000';
 		}
-		for (int i = 0; i < RX_BUFSIZE; i++){
+		for (int i = 0; i < RX_BUFSIZE; i++)
+		{
 			UART2_rxBuffer[i] = '\000';
 		}
 
-		RxRollover = 0;																	// reset the Rollover variable
-	} else {
+		// reset the Rollover variable
+		RxRollover = 0;
+	}
+	else
+	{
 		// no idle flag? --> DMA rollover occurred
 		RxRollover++;		// increment Rollover Counter
 	}

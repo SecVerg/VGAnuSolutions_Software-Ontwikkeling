@@ -42,9 +42,6 @@ int FL_Parse(char *buf)
 	//	Height:							Command type for rectangle only; the height of the rectangle
 	//	Filled:	 	0 - 1				0: Not filled, 1: filled
 	//	Font:		Arial, consolas		Choose the font in which the text will be diplayed. !!The font Consolas is not yet available)!!
-
-
-
 	if(strcmp(*pToken, "lijn") == 0)											//Fill the struct for line command
 	{
 		pToken++;
@@ -236,7 +233,7 @@ void FL_Write_Error(int err)
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_EXEC_NYI:
-			sprintf(err_msg, "Command nog niet geimplementeerd.\n");
+			sprintf(err_msg, "Er is iets mis gegaan:\nError no.%d, Command nog niet geimplementeerd.\n", err);
 			HAL_UART_Transmit(&huart2, (uint8_t *)err_msg, strlen(err_msg), 10);
 			break;
 		case ERR_EXEC_UNK:
