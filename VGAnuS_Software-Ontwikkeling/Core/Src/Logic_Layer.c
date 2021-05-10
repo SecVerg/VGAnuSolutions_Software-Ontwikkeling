@@ -43,9 +43,6 @@ int LL_exec_command(VGA_Command CMD)
 		case REPT:
 			return ERR_EXEC_NYI;
 
-		case EXEC:
-			return ERR_EXEC_NYI;
-
 		case CIRC:
 			return API_Draw_Circle(CMD.X_pos, CMD.Y_pos, CMD.Radius, CMD.Color);
 
