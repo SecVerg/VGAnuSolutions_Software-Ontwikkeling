@@ -1,6 +1,6 @@
-/*
+/**
  * API_bitmap.c
- *
+ * @brief contains used bitmaps
  *  Created on: May 10, 2021
  *      Author: secve
  */

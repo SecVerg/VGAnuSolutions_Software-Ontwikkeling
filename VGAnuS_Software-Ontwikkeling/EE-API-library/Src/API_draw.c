@@ -1,18 +1,18 @@
-/*
+/**
  * API_draw.c
- *
+ * @brief API_draw contains all functions that directly write to the screen
  *  Created on: 29 Apr 2021
- *      Author: secve
+ *      Author: Stijn Vergouwen, Maarten van Dijk, Christiaan Meerkerk
  */
 #include "API_draw.h"
 
-// ----------------------------------------------------------
-// Draw line function
+/** ----------------------------------------------------------
+// @brief Draw line function
 // Arguments:
-// x1,y1,x2,x2 : coords of beginning and end of line
-// color : color of the line
-// thicc : thicness of the line
-// ----------------------------------------------------------
+// @param[in] x1,y1,x2,x2 : coords of beginning and end of line
+// @param[in] color : color of the line
+// @param[in] thicc : thickness of the line
+*/
 int API_Draw_Line(uint16_t x1, uint8_t y1, uint16_t x2, uint8_t y2, uint8_t color, uint8_t thicc)
 {
 int err = 0;
@@ -48,16 +48,16 @@ float slope;
 	return err;
 }
 
-//-----------------------------------------------------------
-// Draw rectangle function
+/**-----------------------------------------------------------
+// @brief Draw rectangle function
 // Arguments:
-// x1,y1 : coords of top left corner of rectangle
-// width : width of the rectangle in pixels
-// height: height of the rectangle in pixels
-// color : color of the rectangle
-// filled: if the rectangle is filled with color or just the outlines
-// 1 is filled, 0 is just outlines
-// ----------------------------------------------------------
+// @param[in] x1,y1 : coords of top left corner of rectangle
+// @param[in] width : width of the rectangle in pixels
+// @param[in] height: height of the rectangle in pixels
+// @param[in] color : color of the rectangle
+// @param[in] filled: if the rectangle is filled with color or just the outlines
+// 			1 is filled, 0 is just outlines
+*/
 int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, uint8_t color, uint8_t filled)
 {
 	uint8_t err = 0;
@@ -89,11 +89,11 @@ int API_Draw_Rectangle(uint16_t x, uint8_t y, uint16_t width, uint8_t height, ui
 	return err;
 }
 
-//-----------------------------------------------------------
-// Draw clearscreen function
-// Arguments:
-// color : color of the screen to be filled with
-// ----------------------------------------------------------
+/**-----------------------------------------------------------
+ * @brief Draw clearscreen function clears the screen and fills with a specified color
+ * Arguments:
+ * @param[in] color : color of the screen to be filled with
+*/
 int API_Draw_Clearscreen(uint8_t color)
 {
 	UB_VGA_FillScreen(color);
@@ -101,10 +101,19 @@ int API_Draw_Clearscreen(uint8_t color)
 	return 0;
 }
 
-//API bitmap function
-//0 = happy smiley
-//1 = sad smiley
-// xpos and ypos determine bottom left location
+/**
+ * @brief API bitmap function
+ * @param[in] number : selects a bitmap
+ * 		0 = happy smiley
+ * 		1 = sad smiley
+ * 		2 = arrow up
+ * 		3 = arrow down
+ * 		4 = arrow left
+ * 		5 = arrow right
+ * @param[in] X_pos : X coordinate
+ * @param[in] Y_pos : Y coordinate
+ * 		xpos and ypos determine bottom left location
+*/
 int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 {
 	uint8_t err = 0;
@@ -121,16 +130,16 @@ int API_Draw_Bitmap(uint8_t Number, uint16_t X_pos, uint8_t Y_pos)
 	return err;
 }
 
-//-----------------------------------------------------------
-// Draw text function
-// Arguments:
-// x1,y1 : coords of top left corner of text
-// color : color of the text
-// text  : the text to be displayed on the screen
-// font  : font of the text to be displayed in
-// fontsize: size of the letters (1 - 2)
-// fontstyle: cursif, bold, normal
-// ----------------------------------------------------------
+/**-----------------------------------------------------------
+ * @brief Draw text function
+ * Arguments:
+ * @param[in] x1,y1 : coords of top left corner of text
+ * @param[in] color : color of the text
+ * @param[in] text  : the text to be displayed on the screen
+ * @param[in] font  : font of the text to be displayed in
+ * @param[in] fontsize: size of the letters (1 - 2)
+ * @param[in] fontstyle: cursif, bold, normal
+*/
 int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, uint8_t fontsize, char* fontstyle)
 {
 	uint8_t font_type;
@@ -182,13 +191,13 @@ int API_Draw_Text(uint16_t x, uint8_t y, uint8_t color, char* text, char* font, 
 	return 0;
 }
 
-//-----------------------------------------------------------
-// Draw circle function
-// Arguments:
-// x1,y1 : coords of middle of circle
-// r  	 : radius of circle
-// color : color of the circle
-// ----------------------------------------------------------
+/**-----------------------------------------------------------
+ * @brief Draw circle function
+ * Arguments:
+ * @param[in] x1,y1 : coords of middle of circle
+ * @param[in] r  	 : radius of circle
+ * @param[in] color : color of the circle
+*/
 int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
 {
     // Consider a rectangle of size N*N
@@ -213,13 +222,13 @@ int API_Draw_Circle(uint16_t x, uint8_t y, uint16_t r, uint8_t color)
     return 0;
 }
 
-//-----------------------------------------------------------
-// Draw char function
-// Arguments:
-// x1,y1 : coords of top left corner of char
-// color : color of the char
-// font  : font of the letter to be displayed in
-// ----------------------------------------------------------
+/**-----------------------------------------------------------
+ * @brief Draw char function
+ * Arguments:
+ * @param[in] x1,y1 : coords of top left corner of char
+ * @param[in] color : color of the char
+ * @param[in] font  : font of the letter to be displayed in
+*/
 int API_Draw_Char (uint8_t x, uint8_t y, uint8_t color, char character, uint8_t font)
 {
 	// get character index for bitmap array
