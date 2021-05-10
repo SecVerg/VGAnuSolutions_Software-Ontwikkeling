@@ -1,0 +1,78 @@
+clearscherm,zwart
+rechthoek,3,10,40,40,wit,1
+bitmap,0,0,10
+rechthoek,3,50,40,40,wit,1
+bitmap,1,0,50
+rechthoek,3,90,40,40,wit,1
+bitmap,5,5,90
+rechthoek,256,10,40,40,wit,1
+bitmap,0,253,10
+rechthoek,256,50,40,40,wit,1
+bitmap,1,253,50
+rechthoek,256,90,40,40,wit,1
+bitmap,4,255,90
+tekst,108,10,wit,VGANuSolutions,consolas,1,cursief
+cirkel,150,120,100,wit
+lijn,90,150,120,170,zwart,3
+lijn,120,170,180,170,zwart,3
+lijn,180,170,210,150,zwart,3
+cirkel,100,100,25,magenta
+cirkel,100,100,26,zwart
+cirkel,100,100,27,blauw
+cirkel,100,100,28,rood
+cirkel,100,100,29,bruin
+cirkel,100,100,30,groen
+cirkel,100,100,31,geel
+cirkel,100,100,30,groen
+cirkel,100,100,29,bruin
+cirkel,100,100,28,rood
+cirkel,100,100,27,blauw
+cirkel,100,100,26,zwart
+cirkel,100,100,25,magenta
+cirkel,200,100,25,magenta
+cirkel,200,100,26,zwart
+cirkel,200,100,27,blauw
+cirkel,200,100,28,rood
+cirkel,200,100,29,bruin
+cirkel,200,100,30,groen
+cirkel,200,100,31,geel
+cirkel,200,100,30,groen
+cirkel,200,100,29,bruin
+cirkel,200,100,28,rood
+cirkel,200,100,27,blauw
+cirkel,200,100,26,zwart
+cirkel,200,100,25,magenta
+clearscherm,zwart
+lijn,10,10,100,100,rood,4
+lijn,100,1,100,200,groen,3
+clearscherm,wit
+rechthoek,10,10,300,200,zwart,1
+rechthoek,10,10,150,100,lichtblauw,0
+rechthoek,160,110,150,100,geel,1
+clearscherm,zwart
+wacht,100
+tekst,1,1,wit,the quick brown fox jumps over the lazy dog,consolas,1,normaal
+tekst,1,100,magenta,the quick brown fox jumps over the lazy dog,arial,2,vet
+tekst,1,200,lichtcyaan,the quick brown fox jumps over the lazy dog,consolas,1,cursief
+clearscherm,wit
+bitmap,0,50,50
+clearscherm,wit
+bitmap,1,50,50
+clearscherm,wit
+bitmap,2,50,50
+clearscherm,bruin
+bitmap,3,50,50
+clearscherm,wit
+cirkel,120,160,25,groen
+clearscherm,geel
+figuur,10,10,100,100,200,150,150,210,80,210,rood
+clearscherm,magenta
+rechthoek,10,20,200,100,zwart, 1
+lijn,1,1,100,100,blauw,4
+tekst,10,50,groen,Beep boop ik ben een robot,consolas,2,normaal
+wacht,2000
+clearscherm,zwart
+tekst,10,10,geel,Bijna klaar!!,consolas,2,vet
+tekst,10,60,grijs,nu alleen nog de herhaalfunctie,arial,1,cursief
+wacht,2000
+herhaal,9,4
